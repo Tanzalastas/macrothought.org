@@ -92,6 +92,21 @@ section.std{padding:88px 0;border-top:1px solid var(--edge)}
 .tenet p b{color:var(--ink);font-weight:400}
 .conf{font-family:var(--mono);font-size:.66rem}
 .conf.v{color:var(--green)}.conf.i{color:var(--amber)}.conf.u{color:#e0729f}
+/* ---------- pricing: stage-1 offers ---------- */
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:36px}
+.tier{background:var(--panel);border:1px solid var(--edge);border-radius:14px;padding:26px 24px;display:flex;flex-direction:column}
+.tier.feat{border-color:rgba(240,168,58,.55);box-shadow:0 18px 60px rgba(240,168,58,.07)}
+.tier .tn{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;color:var(--teal);text-transform:uppercase}
+.tier.feat .tn{color:var(--amber)}
+.tier .tp{font-family:var(--mono);font-size:1.9rem;color:var(--ink);margin:12px 0 2px}
+.tier .tp span{font-size:.7rem;color:var(--faint)}
+.tier .td{font-size:.7rem;color:var(--faint);font-family:var(--mono);margin-bottom:14px}
+.tier p{font-size:.88rem;color:var(--muted);flex:1}
+.tier p b{color:var(--ink);font-weight:400}
+.tier .btn{margin-top:20px;text-align:center}
+.tier .btn.ghost{border-color:var(--edge);color:var(--muted);background:transparent}
+.tier .btn.ghost:hover{border-color:rgba(73,197,216,.4);color:var(--teal)}
+.booknote{margin-top:22px;font-size:.78rem;color:var(--faint);font-style:italic}
 #close{padding:110px 0 96px;border-top:1px solid var(--edge);text-align:center}
 #close h2{max-width:22ch;margin:10px auto 8px}
 #close .lead{margin:0 auto 30px}
@@ -259,6 +274,43 @@ footer .wm{color:var(--muted)}
       <div class="tenet"><span class="tm">04</span><p><b>No queue without a drain.</b> Every automation that
       accumulates work has a routine that consumes it. Machinery that only grows is machinery that rots.</p></div>
     </div>
+  </div>
+</section>
+
+<!-- 8 · PRICING — stage-1: the expertise -->
+<section class="std" id="pricing">
+  <div class="wrap">
+    <div class="kick">work with me</div>
+    <h2>Get a brain like this. <em>Built for yours.</em></h2>
+    <p class="lead">Not a course, not a template drop — the same system you've been scrolling through,
+    designed around your actual life and work.</p>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tn">intro walkthrough</div>
+        <div class="tp">Free</div>
+        <div class="td">20 minutes · live</div>
+        <p>A real-time tour of the running system — the sky, the tree, the gates — and an honest read
+        on <b>what it could look like for you</b>.</p>
+        <a class="btn ghost" href="mailto:macrothought@macrothought.org?subject=Intro%20walkthrough">BOOK A WALKTHROUGH</a>
+      </div>
+      <div class="tier feat">
+        <div class="tn">working session</div>
+        <div class="tp">$120</div>
+        <div class="td">90 minutes · screen-share</div>
+        <p>We design <b>your</b> vault structure, rings, departments and routines together — you leave
+        with a map of your system and the exact next steps to build it.</p>
+        <a class="btn" href="mailto:macrothought@macrothought.org?subject=Working%20session%20($120)">BOOK A SESSION</a>
+      </div>
+      <div class="tier">
+        <div class="tn">full setup</div>
+        <div class="tp">$750</div>
+        <div class="td">~2 weeks · done with you</div>
+        <p>Built on your machine, end to end: vault, maps, routines, agent wiring — plus <b>30 days of
+        Q&amp;A</b> while it becomes habit.</p>
+        <a class="btn ghost" href="mailto:macrothought@macrothought.org?subject=Full%20setup%20($750)">START A SETUP</a>
+      </div>
+    </div>
+    <p class="booknote">Booking is by email while checkout is being wired up — you'll hear back within a day.</p>
   </div>
 </section>
 
