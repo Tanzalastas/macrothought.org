@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Macrothought — your account</title>
+<meta name="description" content="Sign in to your Macrothought hosted second brain, or become a founding member.">
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --bg:#0b0e15;--panel:#10141f;--edge:#1d2433;--ink:#e7edf6;--muted:#8593a8;--faint:#55607a;
+  --teal:#49c5d8;--amber:#f0a83a;--violet:#8b5cf6;--green:#5bb98f;--rose:#f472b6;
+  --serif:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,"SFMono-Regular","JetBrains Mono",Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+.kick{font-family:var(--mono);font-size:.66rem;letter-spacing:.3em;color:var(--teal);text-transform:uppercase}
+h1{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:400;line-height:1.14;margin:10px 0 12px}
+h1 em{color:var(--amber);font-style:normal}
+.lead{color:var(--muted);font-size:1rem;max-width:52ch}
+/* header */
+header{padding:26px 0;border-bottom:1px solid var(--edge)}
+header .wrap{display:flex;align-items:baseline;justify-content:space-between}
+.wm{font-family:var(--mono);font-size:.78rem;letter-spacing:.34em;color:var(--ink)}
+.wm b{color:var(--amber);font-weight:400}
+.dm{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;color:var(--faint)}
+/* layout */
+.wrap{max-width:680px;margin:0 auto;padding:0 24px;width:100%}
+main{flex:1;display:flex;align-items:center;padding:56px 0}
+.card{background:var(--panel);border:1px solid var(--edge);border-radius:16px;padding:34px 30px;width:100%}
+.card.feat{border-color:rgba(240,168,58,.5);box-shadow:0 18px 60px rgba(240,168,58,.06)}
+label{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin:20px 0 8px}
+input[type=email]{width:100%;background:var(--bg);border:1px solid var(--edge);border-radius:9px;
+  color:var(--ink);font-family:var(--mono);font-size:.92rem;padding:13px 15px}
+input[type=email]:focus{outline:none;border-color:rgba(73,197,216,.6)}
+.btn{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;padding:13px 26px;border-radius:8px;cursor:pointer;
+  border:1px solid rgba(240,168,58,.55);color:var(--amber);background:rgba(240,168,58,.07);display:inline-block}
+.btn:hover{background:rgba(240,168,58,.16);text-decoration:none}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.ghost{border-color:var(--edge);color:var(--muted);background:transparent}
+.btn.ghost:hover{border-color:rgba(73,197,216,.4);color:var(--teal)}
+.btn.full{width:100%;text-align:center;margin-top:22px}
+.row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:22px}
+.note{font-family:var(--mono);font-size:.66rem;color:var(--faint);letter-spacing:.06em;margin-top:16px}
+.err{color:var(--rose)}
+.ok{color:var(--green)}
+.price{font-family:var(--mono);font-size:2rem;color:var(--ink);margin:8px 0 2px}
+.price span{font-size:.7rem;color:var(--faint)}
+.feats{margin:18px 0 6px;display:grid;gap:10px}
+.feat-line{display:flex;gap:12px;align-items:baseline;font-size:.9rem;color:var(--muted)}
+.feat-line b{color:var(--ink);font-weight:400}
+.feat-line .m{font-family:var(--mono);color:var(--teal);font-size:.72rem;flex:none}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 20px;margin-top:22px;font-size:.92rem}
+.kv .k{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);align-self:center}
+.kv .v{color:var(--ink)}
+.pill{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;padding:3px 10px;border-radius:20px;display:inline-block}
+.pill.active{color:var(--green);border:1px solid rgba(91,185,143,.4);background:rgba(91,185,143,.08)}
+.pill.none{color:var(--faint);border:1px solid var(--edge)}
+.hidden{display:none}
+.spin{color:var(--muted);font-family:var(--mono);font-size:.8rem}
+footer{border-top:1px solid var(--edge);padding:30px 0;text-align:center;color:var(--faint);font-family:var(--mono);font-size:.62rem;letter-spacing:.12em}
+footer .wm{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header><div class="wrap">
+  <a href="/" style="color:inherit"><span class="wm">MACRO<b>THOUGHT</b></span></a>
+  <span class="dm">your account</span>
+</div></header>
+
+<main><div class="wrap">
+
+  <!-- loading -->
+  <div id="s-loading" class="card">
+    <div class="kick">account</div>
+    <p class="spin" style="margin-top:14px">Connecting to the service…</p>
+  </div>
+
+  <!-- service unreachable -->
+  <div id="s-down" class="card hidden">
+    <div class="kick">account</div>
+    <h1>The service is <em>starting up.</em></h1>
+    <p class="lead">The gate isn't answering yet. This is normal right after a
+    deploy — give it a moment and reload. If it persists, the hosted service
+    may be offline.</p>
+    <div class="row"><button class="btn ghost" onclick="location.reload()">RELOAD</button></div>
+  </div>
+
+  <!-- signed out -->
+  <div id="s-out" class="card hidden">
+    <div class="kick">sign in</div>
+    <h1>One life. <em>One brain.</em> Signed in.</h1>
+    <p class="lead">No passwords. Enter your email and we'll send a single-use
+    sign-in link that's good for 15 minutes.</p>
+    <form id="login-form" autocomplete="on">
+      <label for="email">email address</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com" autocomplete="email">
+      <button type="submit" class="btn full" id="login-btn">SEND SIGN-IN LINK</button>
+    </form>
+    <p class="note" id="login-msg"></p>
+  </div>
+
+  <!-- link sent -->
+  <div id="s-sent" class="card hidden">
+    <div class="kick">check your inbox</div>
+    <h1>Link <em>sent.</em></h1>
+    <p class="lead">If <b id="sent-email">that address</b> has (or can have) an
+    account, a sign-in link is on its way. It expires in 15 minutes and works
+    once. Open it on this device.</p>
+    <div class="row"><button class="btn ghost" onclick="show('s-out')">USE A DIFFERENT EMAIL</button></div>
+  </div>
+
+  <!-- signed in, not entitled: founding-member pitch -->
+  <div id="s-pitch" class="card feat hidden">
+    <div class="kick" style="color:var(--amber)">founding member</div>
+    <h1>Host your brain <em>with a governing body.</em></h1>
+    <p class="lead">You're signed in as <b id="pitch-email"></b>. Become a
+    founding member to bring your vault online — mapped, governed, and reachable
+    from anywhere.</p>
+    <div class="price" id="pitch-price">Founding <span>· subscription</span></div>
+    <div class="feats">
+      <div class="feat-line"><span class="m">01</span><div><b>Your vault, hosted.</b> One markdown second brain, mapped as a living sky.</div></div>
+      <div class="feat-line"><span class="m">02</span><div><b>Governed releases.</b> The deterministic pipeline that verifies work before it ships.</div></div>
+      <div class="feat-line"><span class="m">03</span><div><b>Founding rate, locked.</b> Early members keep their price as the service grows.</div></div>
+    </div>
+    <button class="btn full" id="checkout-btn">BECOME A FOUNDING MEMBER</button>
+    <p class="note" id="pitch-msg"></p>
+    <p class="note">Secure checkout by Stripe · card, Apple&nbsp;Pay, Google&nbsp;Pay.
+      <a href="#" onclick="doLogout(event)">Sign out</a></p>
+  </div>
+
+  <!-- entitled: account panel -->
+  <div id="s-in" class="card hidden">
+    <div class="kick">account</div>
+    <h1>You're <em>in.</em></h1>
+    <p class="lead">Your founding membership is active. The hosted-vault service
+    endpoints come online in phase 2 — this account is ready for them.</p>
+    <div class="kv">
+      <div class="k">email</div><div class="v" id="in-email"></div>
+      <div class="k">status</div><div class="v"><span class="pill active" id="in-status">active</span></div>
+    </div>
+    <p class="note" style="margin-top:24px">Service endpoints are coming online —
+    <b class="ok">phase 2</b>. You'll see your vault here when they ship. Nothing
+    to do until then.</p>
+    <div class="row">
+      <button class="btn ghost" onclick="doLogout(event)">SIGN OUT</button>
+    </div>
+  </div>
+
+</div></main>
+
+<footer><div class="wrap"><span class="wm">MACROTHOUGHT</span> · one vault · one governing body · built in the open with Claude</div></footer>
+
+<script>
+"use strict";
+// API base is configurable so the page works before DNS/tunnel is final.
+const API = (window.MT_API || "https://api.macrothought.org");
+
+function show(id){
+  ["s-loading","s-down","s-out","s-sent","s-pitch","s-in"].forEach(function(s){
+    document.getElementById(s).classList.toggle("hidden", s !== id);
+  });
+}
+
+async function api(path, opts){
+  opts = opts || {};
+  opts.credentials = "include";            // cookies on EVERY call, or it silently 401s
+  opts.headers = Object.assign({"Content-Type":"application/json"}, opts.headers||{});
+  return fetch(API + path, opts);
+}
+
+async function refresh(){
+  let r;
+  try{
+    r = await api("/api/me");
+  }catch(e){
+    show("s-down");                        // network / service down → honest message
+    return;
+  }
+  if(r.status === 401){ show("s-out"); return; }
+  if(!r.ok){ show("s-down"); return; }
+  let me;
+  try{ me = await r.json(); }catch(e){ show("s-down"); return; }
+  if(me.entitled){
+    document.getElementById("in-email").textContent = me.email;
+    document.getElementById("in-status").textContent = me.status || "active";
+    show("s-in");
+  }else{
+    document.getElementById("pitch-email").textContent = me.email;
+    show("s-pitch");
+  }
+}
+
+// signed-out: request a magic link
+document.getElementById("login-form").addEventListener("submit", async function(ev){
+  ev.preventDefault();
+  const btn = document.getElementById("login-btn");
+  const msg = document.getElementById("login-msg");
+  const email = document.getElementById("email").value.trim();
+  if(!email){ return; }
+  btn.disabled = true; msg.textContent = "Sending…"; msg.className = "note";
+  try{
+    const r = await api("/api/login", {method:"POST", body:JSON.stringify({email:email})});
+    if(r.ok){
+      document.getElementById("sent-email").textContent = email;
+      show("s-sent");
+    }else{
+      msg.textContent = "Something went wrong. Try again in a moment.";
+      msg.className = "note err";
+    }
+  }catch(e){
+    msg.textContent = "Couldn't reach the service. It may be starting up — try again shortly.";
+    msg.className = "note err";
+  }finally{
+    btn.disabled = false;
+  }
+});
+
+// not-entitled: start Stripe checkout
+document.getElementById("checkout-btn").addEventListener("click", async function(){
+  const btn = this;
+  const msg = document.getElementById("pitch-msg");
+  btn.disabled = true; msg.textContent = "Opening secure checkout…"; msg.className = "note";
+  try{
+    const r = await api("/api/checkout", {method:"POST"});
+    if(r.ok){
+      const d = await r.json();
+      if(d.url){ window.location.href = d.url; return; }
+    }
+    msg.textContent = "Checkout is unavailable right now. Please try again shortly.";
+    msg.className = "note err";
+    btn.disabled = false;
+  }catch(e){
+    msg.textContent = "Couldn't reach checkout. The service may be starting up.";
+    msg.className = "note err";
+    btn.disabled = false;
+  }
+});
+
+async function doLogout(ev){
+  if(ev){ ev.preventDefault(); }
+  try{ await api("/api/logout", {method:"POST"}); }catch(e){}
+  show("s-out");
+}
+
+// on load: if we came back from a failed magic link, tell the user; then refresh state
+(function(){
+  const params = new URLSearchParams(location.search);
+  if(params.get("auth") === "invalid"){
+    show("s-out");
+    const msg = document.getElementById("login-msg");
+    msg.textContent = "That sign-in link was invalid or already used. Request a fresh one.";
+    msg.className = "note err";
+    return;
+  }
+  refresh();
+})();
+</script>
+</body></html>
