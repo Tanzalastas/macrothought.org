@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Macrothought — a second brain with a governing body</title>
+<meta name="description" content="Macrothought is a working second brain with a governing body: one markdown vault, mapped as a living sky, governed by a deterministic pipeline that turns intent into verified releases.">
+<style>
+:root{
+  --bg:#0b0e15;--panel:#10141f;--edge:#1d2433;--ink:#e7edf6;--muted:#8593a8;--faint:#55607a;
+  --teal:#49c5d8;--amber:#f0a83a;--violet:#8b5cf6;--green:#5bb98f;--rose:#f472b6;
+  --serif:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,"SFMono-Regular","JetBrains Mono",Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.6;overflow-x:hidden}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%;display:block}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.kick{font-family:var(--mono);font-size:.66rem;letter-spacing:.3em;color:var(--teal);text-transform:uppercase}
+h2{font-size:clamp(1.5rem,3.4vw,2.05rem);font-weight:400;margin:10px 0 16px}
+h2 em{color:var(--amber);font-style:normal}
+.lead{color:var(--muted);max-width:620px;font-size:1rem}
+.cap{font-family:var(--mono);font-size:.64rem;color:var(--faint);letter-spacing:.08em;margin-top:10px}
+.cap b{color:var(--muted);font-weight:400}
+/* ---------- 1 · hero: image-as-canvas, text bottom-left ---------- */
+#hero{position:relative;min-height:96vh;display:flex;align-items:flex-end}
+#hero .bgi{position:absolute;inset:0;background:url(assets/hero-sky.jpg) center 38%/cover no-repeat}
+#hero .veil{position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(11,14,21,.42) 0%,rgba(11,14,21,.12) 34%,rgba(11,14,21,.55) 68%,rgba(11,14,21,.96) 100%)}
+#hero .fg{position:relative;z-index:1;width:100%;padding:0 0 9vh}
+#hero .brand{position:absolute;top:26px;left:0;right:0}
+#hero .brand .wrap{display:flex;align-items:baseline;justify-content:space-between}
+#hero .wm{font-family:var(--mono);font-size:.78rem;letter-spacing:.34em;color:var(--ink)}
+#hero .wm b{color:var(--amber);font-weight:400}
+#hero .brand .dm{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;color:var(--faint)}
+h1{font-size:clamp(2rem,5.4vw,3.5rem);font-weight:400;line-height:1.12;max-width:13ch}
+h1 em{color:var(--amber);font-style:normal}
+#hero .sub{margin-top:16px;max-width:520px;color:var(--muted);font-size:1.02rem}
+#hero .sub b{color:var(--ink);font-weight:400}
+#hero .cta{margin-top:28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;padding:12px 26px;border-radius:8px;
+  border:1px solid rgba(240,168,58,.55);color:var(--amber);background:rgba(240,168,58,.07)}
+.btn:hover{background:rgba(240,168,58,.16);text-decoration:none}
+#hero .hint{font-family:var(--mono);font-size:.62rem;color:var(--faint);letter-spacing:.1em}
+/* ---------- 2 · proof strip: mini minimalist ---------- */
+#proof{padding:64px 0;border-top:1px solid var(--edge)}
+#proof .row{display:flex;flex-wrap:wrap;gap:34px 56px;align-items:baseline;justify-content:center;text-align:center}
+#proof .n{font-family:var(--mono);font-size:1.9rem;color:var(--amber)}
+#proof .l{font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;color:var(--faint);text-transform:uppercase;margin-top:4px}
+#proof .note{text-align:center;margin-top:30px;font-size:.82rem;color:var(--faint);font-style:italic}
+/* ---------- 3 · the tree: full-width image, caption right ---------- */
+#tree{padding:88px 0;border-top:1px solid var(--edge)}
+#tree .head{display:flex;justify-content:flex-end;margin-bottom:26px}
+#tree .head>div{max-width:460px;text-align:right}
+#tree .frame{border:1px solid var(--edge);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+/* ---------- 4 · consulate ---------- */
+section.std{padding:88px 0;border-top:1px solid var(--edge)}
+#pipe{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:34px;font-family:var(--mono);font-size:.7rem}
+#pipe .stage{background:var(--panel);border:1px solid var(--edge);border-radius:8px;padding:8px 13px;transition:border-color .25s,box-shadow .25s}
+#pipe .stage.lit{border-color:rgba(73,197,216,.65);box-shadow:0 0 14px rgba(73,197,216,.18);color:var(--teal)}
+#pipe .stage.gate{border-color:rgba(240,168,58,.4)}
+#pipe .stage.gate.lit{border-color:rgba(240,168,58,.85);box-shadow:0 0 14px rgba(240,168,58,.25);color:var(--amber)}
+#pipe .arr{color:var(--faint)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:34px}
+.card{background:var(--panel);border:1px solid var(--edge);border-radius:12px;padding:22px}
+.card h3{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px}
+.card.spine h3{color:var(--violet)}.card.local h3{color:var(--green)}.card.frontier h3{color:var(--teal)}
+.card p{font-size:.9rem;color:var(--muted)}
+.card p b{color:var(--ink);font-weight:400}
+/* ---------- 5 · use cases: editorial offset list ---------- */
+#uses .case{display:grid;grid-template-columns:minmax(120px,220px) 1fr;gap:18px 40px;padding:26px 0;border-top:1px solid var(--edge)}
+#uses .case:first-of-type{border-top:0;margin-top:26px}
+#uses .who{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;color:var(--amber);padding-top:4px}
+#uses .what{color:var(--muted);font-size:.95rem;max-width:640px}
+#uses .what b{color:var(--ink);font-weight:400}
+#uses .what .m{font-family:var(--mono);font-size:.72rem;color:var(--teal)}
+/* ---------- 6 · the machine: editorial side-image ---------- */
+#machine .cols{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center;margin-top:34px}
+#machine .frame{border:1px solid var(--edge);border-radius:12px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+#machine .side p{color:var(--muted);font-size:.95rem;margin-bottom:16px}
+#machine .side p b{color:var(--ink);font-weight:400}
+#machine .frame.small{margin-top:18px}
+@media(max-width:860px){#machine .cols{grid-template-columns:1fr}#uses .case{grid-template-columns:1fr;gap:6px}}
+/* ---------- 7 · philosophy + close ---------- */
+.tenets{margin-top:30px;display:grid;gap:13px;max-width:700px}
+.tenet{display:flex;gap:14px;align-items:baseline}
+.tenet .tm{font-family:var(--mono);color:var(--teal);font-size:.78rem;flex:none}
+.tenet p{color:var(--muted);font-size:.93rem}
+.tenet p b{color:var(--ink);font-weight:400}
+.conf{font-family:var(--mono);font-size:.66rem}
+.conf.v{color:var(--green)}.conf.i{color:var(--amber)}.conf.u{color:#e0729f}
+#close{padding:110px 0 96px;border-top:1px solid var(--edge);text-align:center}
+#close h2{max-width:22ch;margin:10px auto 8px}
+#close .lead{margin:0 auto 30px}
+footer{border-top:1px solid var(--edge);padding:38px 0;text-align:center;color:var(--faint);font-family:var(--mono);font-size:.64rem;letter-spacing:.12em}
+footer .wm{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- 1 · HERO — the real map as the canvas -->
+<div id="hero">
+  <div class="bgi"></div><div class="veil"></div>
+  <div class="brand"><div class="wrap">
+    <span class="wm">MACRO<b>THOUGHT</b></span>
+    <span class="dm">macrothought.org</span>
+  </div></div>
+  <div class="fg"><div class="wrap">
+    <div class="kick">a second brain with a governing body</div>
+    <h1 style="margin-top:14px">One life. <em>235 systems.</em> Drawn as a sky.</h1>
+    <p class="sub">This is a <b>real screenshot</b> of Macrothought running — every note, project and
+    tool one person owns, mapped as a living constellation and governed by a pipeline that
+    <b>verifies work before it ships</b>.</p>
+    <div class="cta">
+      <a class="btn" href="mailto:hello@macrothought.org?subject=Walkthrough">REQUEST A WALKTHROUGH</a>
+      <span class="hint">no product tour videos — the system itself, live</span>
+    </div>
+  </div></div>
+</div>
+
+<!-- 2 · PROOF — real numbers, quiet -->
+<section id="proof">
+  <div class="wrap">
+    <div class="row">
+      <div><div class="n" data-n="235">0</div><div class="l">systems mapped</div></div>
+      <div><div class="n" data-n="170">0</div><div class="l">living notes</div></div>
+      <div><div class="n" data-n="121">0</div><div class="l">gated releases</div></div>
+      <div><div class="n" data-n="41">0</div><div class="l">skills</div></div>
+      <div><div class="n" data-n="9">0</div><div class="l">departments</div></div>
+    </div>
+    <p class="note">Nothing on this page is a mockup. Every image is captured from the running system;
+    every number is read from it.</p>
+  </div>
+</section>
+
+<!-- 3 · THE TREE — the signature visual -->
+<section id="tree">
+  <div class="wrap">
+    <div class="head"><div>
+      <div class="kick">the tree layout</div>
+      <h2>Knowledge <em>grows.</em></h2>
+      <p class="lead" style="text-align:right;margin-left:auto">Switch the map to TREE and each department
+      grows upward from a shared root — a game project, an AI stack, a teaching archive — each one a
+      distinct organism you can watch change week to week.</p>
+    </div></div>
+    <div class="frame"><img src="assets/brain-map-tree.jpg" alt="Macrothought tree layout — departments growing as trees of linked notes" loading="lazy"></div>
+    <p class="cap"><b>TREE layout, live capture.</b> Left to right: a game in development · the AI stack ·
+    emulation · tools · NAS · editor · personal — rooted in one markdown vault.</p>
+  </div>
+</section>
+
+<!-- 4 · THE CONSULATE -->
+<section class="std" id="consulate">
+  <div class="wrap">
+    <div class="kick">the consulate — the governing body</div>
+    <h2>“All agents finished” is not <em>“the work is correct.”</em></h2>
+    <p class="lead">Most AI workflows end when the model stops talking. Macrothought's orchestration layer
+    is a deterministic pipeline that turns intent into <b>verified, gated releases</b> — a completed agent
+    ≠ a completed requirement ≠ a shippable release.</p>
+    <div id="pipe">
+      <span class="stage">intent</span><span class="arr">→</span>
+      <span class="stage">requirements</span><span class="arr">→</span>
+      <span class="stage">context</span><span class="arr">→</span>
+      <span class="stage">routing</span><span class="arr">→</span>
+      <span class="stage">execution</span><span class="arr">→</span>
+      <span class="stage">verification</span><span class="arr">→</span>
+      <span class="stage">adversarial audit</span><span class="arr">→</span>
+      <span class="stage">repair</span><span class="arr">→</span>
+      <span class="stage gate">release gate</span><span class="arr">→</span>
+      <span class="stage">metrics</span>
+    </div>
+    <div class="cards">
+      <div class="card spine"><h3>deterministic spine</h3>
+        <p><b>No model in the loop.</b> The requirement ledger, verification harness and release gates are
+        plain state and plain code. Completion is provable, not asserted.</p></div>
+      <div class="card local"><h3>local intelligence</h3>
+        <p><b>Cheap and idempotent.</b> Local models classify, compile context and propose simple fixes —
+        propose-only, never silently deciding. Runs on the desk.</p></div>
+      <div class="card frontier"><h3>frontier intelligence</h3>
+        <p><b>Where judgment matters.</b> Frontier agents take design, hard repair and adversarial audit.
+        Everything they claim is re-verified by the spine.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · USE CASES — beyond AI file management -->
+<section class="std" id="uses">
+  <div class="wrap">
+    <div class="kick">what a governed brain is for</div>
+    <h2>Built on files. <em>Not about files.</em></h2>
+    <p class="lead">The same pattern — one readable vault, explicit confidence, verified releases —
+    fits anywhere knowledge decays faster than people can maintain it.</p>
+    <div class="case">
+      <div class="who">A 40-PERSON COMPANY</div>
+      <div class="what">Ops knowledge lives in one vault instead of six wikis nobody trusts. When a
+      process changes, the note is <b>updated, not appended</b> — and the release gate means the runbook
+      that ships is the runbook that was verified. <span class="m">onboarding drops from weeks to days.</span></div>
+    </div>
+    <div class="case">
+      <div class="who">A TEACHER</div>
+      <div class="what">A curriculum as a living department: lessons wikilinked to standards, past
+      cohorts' stumbling points tagged <span class="conf u">[uncertain]</span> until re-tested. Recall is
+      <b>gap-aware</b> — the system says what's stale before you teach it again. <span class="m">prep from the map, not from memory.</span></div>
+    </div>
+    <div class="case">
+      <div class="who">A CONTENT CREATOR</div>
+      <div class="what">Research, scripts, footage and renders mapped as one tree per series. The pipeline
+      treats an episode like a release: <b>drafts don't ship until the checks pass</b> — sources cited,
+      assets present, cut verified. <span class="m">the archive becomes the studio.</span></div>
+    </div>
+    <div class="case">
+      <div class="who">A HOUSEHOLD'S FINANCES</div>
+      <div class="what">Decisions recorded with their reasoning and confidence at the time — then
+      <b>re-checked on a weekly verify-or-decay cadence</b> instead of trusted forever. No advice, no
+      black box: an audit trail you can read in plain text. <span class="m">every claim dated, every claim checkable.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · THE MACHINE — governance you can see -->
+<section class="std" id="machine">
+  <div class="wrap">
+    <div class="kick">the machine — governance you can see</div>
+    <h2>Every file. Every change. <em>Reviewed.</em></h2>
+    <div class="cols">
+      <div>
+        <div class="frame"><img src="assets/file-map-wide.jpg" alt="The machine — file constellation of the whole home directory" loading="lazy"></div>
+        <p class="cap"><b>The machine view:</b> the entire working environment as a constellation — amber marks
+        what changed in the last 48 hours.</p>
+      </div>
+      <div class="side">
+        <p><b>The brain travels; the hands stay home.</b> The whole system mirrors to a small always-on
+        server and is reachable from a phone — maps, stats, history, consoles — over a private network.</p>
+        <p><b>Remote work is reviewed like a pull request.</b> Changes made away from the desk aren't
+        auto-committed: they queue with a summary and file list, and land only on a one-click local review.</p>
+        <div class="frame small"><img src="assets/hub-remote.jpg" alt="Remote changes tab — pending changes reviewed and committed locally" loading="lazy"></div>
+        <p class="cap"><b>⇄ remote tab, live capture</b> — a pending remote changeset and its commit history.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · PHILOSOPHY + CLOSE -->
+<section class="std" id="philosophy">
+  <div class="wrap">
+    <div class="kick">the philosophy</div>
+    <h2>Memory you can <em>audit.</em></h2>
+    <div class="tenets">
+      <div class="tenet"><span class="tm">01</span><p><b>Markdown first.</b> Databases, graph stores and
+      vector memories were tried — and parked. The institutional memory is text a human can read, diff and version.</p></div>
+      <div class="tenet"><span class="tm">02</span><p><b>Confidence is explicit.</b> Every claim is tagged
+      <span class="conf v">[verified]</span> <span class="conf i">[inferred]</span> or
+      <span class="conf u">[uncertain]</span> — dated, and re-checked weekly.</p></div>
+      <div class="tenet"><span class="tm">03</span><p><b>Gap-aware recall.</b> Answers say what's stale and
+      what's missing. A memory system that implies completeness is lying to you.</p></div>
+      <div class="tenet"><span class="tm">04</span><p><b>No queue without a drain.</b> Every automation that
+      accumulates work has a routine that consumes it. Machinery that only grows is machinery that rots.</p></div>
+    </div>
+  </div>
+</section>
+
+<div id="close">
+  <div class="wrap">
+    <div class="kick">see it running</div>
+    <h2>The best demo is the <em>real thing.</em></h2>
+    <p class="lead">A walkthrough is the live system on a real screen — the sky, the tree,
+    the gates — not a deck.</p>
+    <a class="btn" href="mailto:hello@macrothought.org?subject=Walkthrough">REQUEST A WALKTHROUGH</a>
+  </div>
+</div>
+
+<footer><div class="wrap"><span class="wm">MACROTHOUGHT</span> · one vault · one governing body · built in the open with Claude</div></footer>
+
+<script>
+"use strict";
+/* pipeline stages light in sequence */
+(function(){const st=[...document.querySelectorAll("#pipe .stage")];let i=-1;
+  setInterval(()=>{if(i>=0)st[i].classList.remove("lit");i=(i+1)%st.length;st[i].classList.add("lit");},900);})();
+/* counters animate on view */
+(function(){const io=new IntersectionObserver(es=>{for(const e of es){if(!e.isIntersecting)continue;
+  io.unobserve(e.target);const el=e.target,N=+el.dataset.n,t0=performance.now();
+  (function tick(now){const p=Math.min(1,(now-t0)/1200),ease=1-Math.pow(1-p,3);
+    el.textContent=Math.round(N*ease);if(p<1)requestAnimationFrame(tick);})(t0);}},{threshold:.6});
+  document.querySelectorAll("#proof .n").forEach(el=>io.observe(el));})();
+</script>
+</body></html>
