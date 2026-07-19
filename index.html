@@ -121,12 +121,16 @@ footer .wm{color:var(--muted)}
 /* ---- pre-entry branding intro + pixel-shatter reveal ---- */
 #mt-intro{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 #mt-intro .bg{position:absolute;inset:0;background:var(--bg);transition:opacity .6s ease;}
-#mt-intro video{position:relative;max-width:100%;max-height:100%;width:auto;height:100%;object-fit:contain;}
+#mt-intro video{position:relative;max-width:100%;max-height:100%;width:auto;height:100%;object-fit:contain;
+  /* feather every edge so the video's rectangle dissolves into the page bg —
+     no visible boundary, so you can't tell it's a video */
+  -webkit-mask:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent),
+              linear-gradient(to bottom,transparent,#000 6%,#000 94%,transparent);
+  -webkit-mask-composite:source-in;
+  mask:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent),
+       linear-gradient(to bottom,transparent,#000 6%,#000 94%,transparent);
+  mask-composite:intersect;}
 #mt-shatter{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;}
-#mt-skip{position:absolute;top:20px;right:20px;z-index:2;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;
-  text-transform:uppercase;color:var(--muted);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
-  border-radius:7px;padding:7px 13px;cursor:pointer;transition:.15s;}
-#mt-skip:hover{color:var(--ink);background:rgba(255,255,255,.12);}
 #mt-intro.gone{opacity:0;transition:opacity .5s ease;pointer-events:none;}
 /* the page emerges as the logo shatters */
 body.mt-preload #hero .fg,body.mt-preload #hero .brand{opacity:0;}
@@ -143,7 +147,6 @@ body.mt-preload #hero .fg{transform:translateY(16px) scale(.985);}
     <source src="assets/intro.mp4" type="video/mp4">
   </video>
   <canvas id="mt-shatter"></canvas>
-  <button id="mt-skip" type="button">Skip ↷</button>
 </div>
 
 <!-- 1 · HERO — the real map as the canvas -->
@@ -378,17 +381,16 @@ body.mt-preload #hero .fg{transform:translateY(16px) scale(.985);}
 (function(){
   "use strict";
   var intro=document.getElementById("mt-intro"), vid=document.getElementById("mt-vid"),
-      cv=document.getElementById("mt-shatter"), skip=document.getElementById("mt-skip"),
+      cv=document.getElementById("mt-shatter"),
       body=document.body, done=false;
   var reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
-  var seen=false; try{seen=sessionStorage.getItem("mt_intro")==="1";}catch(e){}
 
   function showSite(){ body.classList.remove("mt-preload"); body.classList.add("mt-reveal");
     if(intro&&intro.parentNode){ intro.classList.add("gone"); setTimeout(function(){ if(intro.parentNode) intro.parentNode.removeChild(intro); },600);} }
 
-  // skip the intro entirely (reduced-motion, already seen, or no video support)
-  if(reduce||seen||!vid||!vid.canPlayType||!vid.canPlayType("video/mp4")){ showSite(); return; }
-  try{sessionStorage.setItem("mt_intro","1");}catch(e){}
+  // plays on EVERY load (no once-per-session gate). Only bypass: reduced-motion
+  // (accessibility) or a browser that can't play the mp4.
+  if(reduce||!vid||!vid.canPlayType||!vid.canPlayType("video/mp4")){ showSite(); return; }
 
   function shatter(){
     if(done) return; done=true;
@@ -444,7 +446,6 @@ body.mt-preload #hero .fg{transform:translateY(16px) scale(.985);}
     requestAnimationFrame(frame);
   }
 
-  skip.addEventListener("click", function(){ if(done){return;} showSite(); done=true; });
   vid.addEventListener("ended", shatter);
   vid.addEventListener("error", showSite);
   // fallback: if metadata gives a duration, force the shatter a touch after it ends
