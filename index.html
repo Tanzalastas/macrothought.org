@@ -32,7 +32,13 @@ h2 em{color:var(--amber);font-style:normal}
   linear-gradient(180deg,rgba(11,14,21,.42) 0%,rgba(11,14,21,.12) 34%,rgba(11,14,21,.55) 68%,rgba(11,14,21,.96) 100%)}
 #hero .fg{position:relative;z-index:1;width:100%;padding:0 0 9vh}
 #hero .brand{position:absolute;top:26px;left:0;right:0}
-#hero .brand .wrap{display:flex;align-items:baseline;justify-content:space-between}
+#hero .brand .wrap{display:flex;align-items:center;justify-content:space-between}
+#hero .brand .rgt{display:flex;align-items:center;gap:16px}
+#hero .acct{font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--teal);border:1px solid rgba(77,216,240,.5);border-radius:7px;padding:7px 13px;
+  background:rgba(77,216,240,.07);text-decoration:none;white-space:nowrap}
+#hero .acct:hover{background:rgba(77,216,240,.16);color:#c7f1fa;text-decoration:none}
+@media(max-width:620px){#hero .brand .dm{display:none}}
 #hero .wm{font-family:var(--mono);font-size:.78rem;letter-spacing:.34em;color:var(--ink)}
 #hero .wm b{color:var(--amber);font-weight:400}
 #hero .brand .dm{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;color:var(--faint)}
@@ -121,7 +127,10 @@ footer .wm{color:var(--muted)}
   <div class="bgi"></div><div class="veil"></div>
   <div class="brand"><div class="wrap">
     <span class="wm">MACRO<b>THOUGHT</b></span>
-    <span class="dm">macrothought.org</span>
+    <span class="rgt">
+      <span class="dm">macrothought.org</span>
+      <a class="acct" href="/app.html">Sign in / Sign up</a>
+    </span>
   </div></div>
   <div class="fg"><div class="wrap">
     <div class="kick">a second brain with a governing body</div>
