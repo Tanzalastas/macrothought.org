@@ -138,6 +138,33 @@ body.mt-reveal #hero .fg{opacity:1;transform:none;transition:opacity 1s ease .1s
 body.mt-reveal #hero .brand{opacity:1;transition:opacity .9s ease .35s;}
 body.mt-preload #hero .fg{transform:translateY(16px) scale(.985);}
 @media (prefers-reduced-motion:reduce){#mt-intro{display:none!important;}body.mt-preload #hero .fg,body.mt-preload #hero .brand{opacity:1!important;transform:none!important;}}
+/* ---- header nav ---- */
+#hero .nav{display:flex;align-items:center;gap:18px}
+#hero .nav a{font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+#hero .nav a:hover{color:var(--ink);text-decoration:none}
+@media(max-width:820px){#hero .nav .nl{display:none}}
+/* ---- two-up showcase (tree views) ---- */
+#tree .views{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px}
+@media(max-width:820px){#tree .views{grid-template-columns:1fr}}
+/* ---- roadmap ---- */
+.roadmap{display:flex;flex-direction:column;gap:14px;margin-top:30px}
+.phase-row{display:grid;grid-template-columns:150px 1fr;gap:22px;align-items:start;padding:20px 22px;
+  background:var(--panel);border:1px solid var(--edge);border-radius:14px}
+@media(max-width:640px){.phase-row{grid-template-columns:1fr;gap:10px}}
+.phase-row h3{font-family:var(--mono);font-size:.82rem;letter-spacing:.04em;color:var(--ink);margin-bottom:7px}
+.phase-row p{color:var(--muted);font-size:.94rem}
+.phase-row p b{color:var(--ink);font-weight:400}
+.rp{font-family:var(--mono);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;padding:5px 11px;
+  border-radius:20px;white-space:nowrap;align-self:start;justify-self:start}
+.phase-row.now .rp{color:var(--green);border:1px solid rgba(91,185,143,.5);background:rgba(91,185,143,.08)}
+.phase-row.build .rp{color:var(--amber);border:1px solid rgba(240,168,58,.5);background:rgba(240,168,58,.08)}
+.phase-row.next .rp{color:var(--muted);border:1px solid var(--edge)}
+.phase-row.build{border-color:rgba(240,168,58,.28)}
+/* ---- contact ---- */
+.contact-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:26px}
+.contact-note{color:var(--faint);font-family:var(--mono);font-size:.62rem;letter-spacing:.04em;margin-top:16px}
+footer .fl{display:inline-flex;gap:14px;margin-left:12px}
+footer .fl a{color:var(--muted);font-size:.72rem}
 </style>
 </head>
 <body class="mt-preload">
@@ -155,13 +182,18 @@ body.mt-preload #hero .fg{transform:translateY(16px) scale(.985);}
   <div class="brand"><div class="wrap">
     <span class="wm">MACRO<b>THOUGHT</b></span>
     <span class="rgt">
-      <span class="dm">macrothought.org</span>
+      <span class="nav">
+        <a class="nl" href="#roadmap">Roadmap</a>
+        <a class="nl" href="#pricing">Pricing</a>
+        <a class="nl" href="#about">About</a>
+        <a class="nl" href="#contact">Contact</a>
+      </span>
       <a class="acct" href="/app.html">Sign in / Sign up</a>
     </span>
   </div></div>
   <div class="fg"><div class="wrap">
     <div class="kick">a second brain with a governing body</div>
-    <h1 style="margin-top:14px">One life. <em>235 systems.</em> Drawn as a sky.</h1>
+    <h1 style="margin-top:14px">One life. <em>243 systems.</em> Drawn as a sky.</h1>
     <p class="sub">This is a <b>real screenshot</b> of Macrothought running — every note, project and
     tool one person owns, mapped as a living constellation and governed by a pipeline that
     <b>verifies work before it ships</b>.</p>
@@ -176,8 +208,8 @@ body.mt-preload #hero .fg{transform:translateY(16px) scale(.985);}
 <section id="proof">
   <div class="wrap">
     <div class="row">
-      <div><div class="n" data-n="235">0</div><div class="l">systems mapped</div></div>
-      <div><div class="n" data-n="170">0</div><div class="l">living notes</div></div>
+      <div><div class="n" data-n="243">0</div><div class="l">systems mapped</div></div>
+      <div><div class="n" data-n="174">0</div><div class="l">living notes</div></div>
       <div><div class="n" data-n="121">0</div><div class="l">gated releases</div></div>
       <div><div class="n" data-n="41">0</div><div class="l">skills</div></div>
       <div><div class="n" data-n="9">0</div><div class="l">departments</div></div>
@@ -200,6 +232,18 @@ body.mt-preload #hero .fg{transform:translateY(16px) scale(.985);}
     <div class="frame"><img src="assets/brain-map-tree.jpg" alt="Macrothought tree layout — departments growing as trees of linked notes" loading="lazy"></div>
     <p class="cap"><b>TREE layout, live capture.</b> Left to right: a game in development · the AI stack ·
     emulation · tools · NAS · editor · personal — rooted in one markdown vault.</p>
+    <div class="views">
+      <div>
+        <div class="frame"><img src="assets/galaxy-force.jpg" alt="Force layout — each department a galaxy orbiting the core" loading="lazy"></div>
+        <p class="cap"><b>FORCE layout.</b> The same vault as living galaxies — every department a cluster
+        orbiting the core, dragged and re-settled in real time.</p>
+      </div>
+      <div>
+        <div class="frame"><img src="assets/tree-3d-focus.jpg" alt="Tree focus in 3D — one department isolated, its cross-links arcing overhead" loading="lazy"></div>
+        <p class="cap"><b>Tree focus, in 3D.</b> Click a department to isolate it and orbit — every note it
+        links to across the vault arcs overhead as a labelled crown.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -313,6 +357,41 @@ body.mt-preload #hero .fg{transform:translateY(16px) scale(.985);}
   </div>
 </section>
 
+<!-- 7.5 · ROADMAP -->
+<section class="std" id="roadmap">
+  <div class="wrap">
+    <div class="kick">where it's going</div>
+    <h2>From a system I run <em>to a service you own.</em></h2>
+    <p class="lead">Macrothought is a working brain today, not a promise. Here's the honest path from
+    hands-on setup to a hosted product — nothing here is dressed up as live before it is.</p>
+    <div class="roadmap">
+      <div class="phase-row now">
+        <span class="rp">available now</span>
+        <div><h3>Expert setup, done with you</h3>
+        <p>A live walkthrough, a working session, or a full build on your own machine — the vault, maps,
+        routines and governed pipeline, designed around your work. <b>Purchasable below today.</b></p></div>
+      </div>
+      <div class="phase-row build">
+        <span class="rp">in build</span>
+        <div><h3>Your own hosted second brain</h3>
+        <p>A managed, governed vault we host and maintain, with prompts run through <b>private
+        infrastructure</b> — your own workspace, your own usage, isolated from everyone else's. The
+        payment gate, per-tenant isolation and metering are built and independently audited; the public
+        service goes live once storage, disclosure and the secure edge are in place.</p></div>
+      </div>
+      <div class="phase-row next">
+        <span class="rp">next</span>
+        <div><h3>Content &amp; research, governed the same way</h3>
+        <p>Bring your existing AI conversations, web sources and footage in — distilled into your
+        departments with their provenance kept — and turn research or renders into verified releases,
+        priced by what you actually use.</p></div>
+      </div>
+    </div>
+    <p class="contact-note">Building in the open. Want the current state or to shape what ships next?
+    <a href="#contact">Get in touch.</a></p>
+  </div>
+</section>
+
 <!-- 8 · PRICING — stage-1: the expertise -->
 <section class="std" id="pricing">
   <div class="wrap">
@@ -350,6 +429,43 @@ body.mt-preload #hero .fg{transform:translateY(16px) scale(.985);}
   </div>
 </section>
 
+<!-- 9 · ABOUT -->
+<section class="std" id="about">
+  <div class="wrap">
+    <div class="kick">about</div>
+    <h2>One person. One real brain. <em>Now yours.</em></h2>
+    <p class="lead">Macrothought isn't a pitch deck or a wrapper around someone else's model. It's a
+    system built and used every day to run real work — game development, an AI stack, a business — all
+    from one markdown vault with a governing body that verifies work before it ships.</p>
+    <div class="cards">
+      <div class="card spine"><h3>built, not theorised</h3>
+        <p>Every screenshot on this page is the live system. The pipeline that gates a release here is the
+        same one you'd get — nothing is a mockup.</p></div>
+      <div class="card local"><h3>owner-operated</h3>
+        <p>No VC roadmap, no growth theatre. Features ship when they're correct and get cut when they
+        aren't — the same discipline the product enforces.</p></div>
+      <div class="card frontier"><h3>yours to audit</h3>
+        <p>Your knowledge stays plain text you can read, diff and export. The system tells you what's
+        stale or uncertain instead of pretending to be complete.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · CONTACT -->
+<section class="std" id="contact">
+  <div class="wrap">
+    <div class="kick">contact</div>
+    <h2>Talk to a <em>human.</em></h2>
+    <p class="lead">Questions, a walkthrough, an invoice for your company, or just to see it running —
+    email reaches a real person, usually within a day.</p>
+    <div class="contact-row">
+      <a class="btn" href="mailto:macrothought@macrothought.org?subject=Hello">macrothought@macrothought.org</a>
+      <a class="btn ghost" href="/app.html">Sign in / Sign up</a>
+    </div>
+    <p class="contact-note">macrothought.org · a governed second brain, built in the open.</p>
+  </div>
+</section>
+
 <div id="close">
   <div class="wrap">
     <div class="kick">see it running</div>
@@ -360,7 +476,8 @@ body.mt-preload #hero .fg{transform:translateY(16px) scale(.985);}
   </div>
 </div>
 
-<footer><div class="wrap"><span class="wm">MACROTHOUGHT</span> · one vault · one governing body · built in the open with Claude</div></footer>
+<footer><div class="wrap"><span class="wm">MACROTHOUGHT</span> · one vault · one governing body · built in the open
+  <span class="fl"><a href="#roadmap">Roadmap</a><a href="#about">About</a><a href="#contact">Contact</a><a href="/app.html">Sign in</a></span></div></footer>
 
 <script>
 "use strict";
