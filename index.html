@@ -197,6 +197,21 @@ footer .fl a{color:var(--muted);font-size:.72rem}
 .bt .bn span{font-size:.9rem;color:var(--faint)}
 .bt .bk{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:9px;font-family:var(--mono)}
 .bt .bx{font-size:.66rem;color:var(--faint);margin-top:3px}
+/* side-by-side comparison */
+.vs{margin-top:30px;border:1px solid var(--edge);border-radius:14px;overflow:hidden}
+.vs .vrow{display:grid;grid-template-columns:1.25fr 1fr 1fr;border-top:1px solid var(--edge)}
+.vs .vrow:first-child{border-top:0}
+.vs .vc{padding:14px 15px;font-family:var(--mono);display:flex;flex-direction:column;gap:3px;justify-content:center;min-width:0}
+.vs .vh{background:rgba(255,255,255,.03)}
+.vs .vh .vc{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase}
+.vs .vh .vc.mt{color:var(--teal)}.vs .vh .vc.std{color:var(--amber)}
+.vs .vc.lbl{color:var(--muted);font-size:.68rem}
+.vs .vc.mt{background:rgba(73,197,216,.05);border-left:2px solid rgba(73,197,216,.45)}
+.vs .vc .big{font-size:.98rem;font-variant-numeric:tabular-nums;color:var(--ink)}
+.vs .vc.mt .big{color:var(--teal)}
+.vs .vc.std .big{color:var(--muted)}
+.vs .vc .sm{font-size:.6rem;color:var(--faint);letter-spacing:.02em}
+@media(max-width:600px){.vs .vrow{grid-template-columns:1fr 1fr}.vs .vc.lbl{grid-column:1/3;padding-bottom:2px;border-top:1px solid var(--edge)}.vs .vrow:first-child .vc.lbl{display:none}}
 </style>
 </head>
 <body class="mt-preload">
@@ -377,15 +392,42 @@ footer .fl a{color:var(--muted);font-size:.72rem}
         <div class="bsub">no memory of your files, so it carries the whole vault to answer one question</div>
       </div>
     </div>
-    <div class="bstats">
-      <div class="bt"><div class="bn">27</div><div class="bk">questions tested</div><div class="bx">real, from the live vault</div></div>
-      <div class="bt"><div class="bn">96<span>%</span></div><div class="bk">opened the right note</div><div class="bx">26 of 27</div></div>
-      <div class="bt"><div class="bn">47<span>ms</span></div><div class="bk">avg to find it</div><div class="bx">p95 65ms, deterministic</div></div>
-      <div class="bt"><div class="bn">635</div><div class="bk">tokens per answer</div><div class="bx">median 599, and flat</div></div>
-      <div class="bt"><div class="bn">0</div><div class="bk">tokens to search</div><div class="bx">the retrieval is free</div></div>
-      <div class="bt"><div class="bn">292<span>&times;</span></div><div class="bk">fewer than paste-all</div><div class="bx">per grounded answer</div></div>
-      <div class="bt money"><div class="bn">$0.05</div><div class="bk">for all 27 answers</div><div class="bx">vs $15 pasting the vault</div></div>
-      <div class="bt"><div class="bn">298<span>&times;</span></div><div class="bk">over a 20-turn session</div><div class="bx">a chat re-sends its history</div></div>
+    <div class="vs">
+      <div class="vrow vh">
+        <div class="vc lbl"></div>
+        <div class="vc mt">Macrothought</div>
+        <div class="vc std">Standard web chat</div>
+      </div>
+      <div class="vrow">
+        <div class="vc lbl">Tokens per grounded answer</div>
+        <div class="vc mt"><span class="big">635</span><span class="sm">the answering section</span></div>
+        <div class="vc std"><span class="big">180,700</span><span class="sm">carries your whole vault</span></div>
+      </div>
+      <div class="vrow">
+        <div class="vc lbl">Finding the answer</div>
+        <div class="vc mt"><span class="big">47ms &middot; 0 tokens</span><span class="sm">deterministic search</span></div>
+        <div class="vc std"><span class="big">no search</span><span class="sm">re-reads all pasted text</span></div>
+      </div>
+      <div class="vrow">
+        <div class="vc lbl">Right source</div>
+        <div class="vc mt"><span class="big">96% right note</span><span class="sm">cites the note &amp; its date</span></div>
+        <div class="vc std"><span class="big">no memory</span><span class="sm">of your private files</span></div>
+      </div>
+      <div class="vrow">
+        <div class="vc lbl">A 20-turn work session</div>
+        <div class="vc mt"><span class="big">~13k tokens</span><span class="sm">flat, per turn</span></div>
+        <div class="vc std"><span class="big">~3.7M tokens</span><span class="sm">history re-sent each turn</span></div>
+      </div>
+      <div class="vrow">
+        <div class="vc lbl">Token cost, 100 answers</div>
+        <div class="vc mt"><span class="big">$0.19</span><span class="sm">at $3 / million in</span></div>
+        <div class="vc std"><span class="big">$54</span><span class="sm">at $3 / million in</span></div>
+      </div>
+      <div class="vrow">
+        <div class="vc lbl">Your knowledge</div>
+        <div class="vc mt"><span class="big">yours, plain text</span><span class="sm">on private infrastructure</span></div>
+        <div class="vc std"><span class="big">in their chat</span><span class="sm">sent to the provider</span></div>
+      </div>
     </div>
     <p class="benchnote">Measured across 27 real questions on the live 249-note vault. Accuracy is whether
     recall opened a note that answers the question (one miss, one question excluded because only the gate's
