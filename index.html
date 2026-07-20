@@ -212,6 +212,22 @@ footer .fl a{color:var(--muted);font-size:.72rem}
 .vs .vc.std .big{color:var(--muted)}
 .vs .vc .sm{font-size:.6rem;color:var(--faint);letter-spacing:.02em}
 @media(max-width:600px){.vs .vrow{grid-template-columns:1fr 1fr}.vs .vc.lbl{grid-column:1/3;padding-bottom:2px;border-top:1px solid var(--edge)}.vs .vrow:first-child .vc.lbl{display:none}}
+/* feature matrix */
+.feat{margin-top:30px;border:1px solid var(--edge);border-radius:14px;overflow:hidden}
+.feat .frow{display:grid;grid-template-columns:1fr 84px 84px;border-top:1px solid var(--edge);align-items:center}
+.feat .frow:first-child{border-top:0}
+.feat .fh{background:rgba(255,255,255,.03)}
+.feat .fl{padding:11px 15px;font-size:.9rem;color:var(--muted)}
+.feat .fm{padding:11px 8px;text-align:center;font-family:var(--mono);font-size:1rem}
+.feat .fmt{background:rgba(73,197,216,.045);border-left:1px solid rgba(73,197,216,.25)}
+.feat .fh .fl{font-family:var(--mono)}
+.feat .fh .fm{font-size:.56rem;letter-spacing:.13em;text-transform:uppercase}
+.feat .fh .fmt{color:var(--teal)}.feat .fh .fstd{color:var(--amber)}
+.feat .yes{color:var(--teal)}
+.feat .no{color:#3a4354}
+.feat .part{color:var(--amber);font-size:.8rem}
+.featleg{font-family:var(--mono);font-size:.58rem;color:var(--faint);letter-spacing:.06em;margin-top:14px}
+.featleg b{color:var(--amber);font-weight:400}
 </style>
 </head>
 <body class="mt-preload">
@@ -437,6 +453,45 @@ footer .fl a{color:var(--muted);font-size:.72rem}
     answer. Hand a chat the single right file instead and a prior head-to-head still measured <b>about 10x
     fewer tokens</b>, because recall returns the section, not the whole file. And a chat re-sends its full
     history on every turn, so the longer you work, the wider the gap grows.</p>
+  </div>
+</section>
+
+<!-- 4.6 · FEATURE MATRIX -->
+<section class="std" id="features">
+  <div class="wrap">
+    <div class="kick">feature by feature</div>
+    <h2>What's included vs a <em>chat window.</em></h2>
+    <p class="lead">A standard chat is a fine place to talk to a model. Macrothought is where your knowledge
+    lives, gets verified and stays yours. Here is the honest breakdown, including the rows where a plain
+    chat still wins.</p>
+    <div class="feat">
+      <div class="frow fh">
+        <div class="fl">Feature</div>
+        <div class="fm fmt">Macrothought</div>
+        <div class="fm fstd">Standard chat</div>
+      </div>
+      <div class="frow"><div class="fl">Remembers your private notes across sessions</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="part">&#9680;</span></div></div>
+      <div class="frow"><div class="fl">A visual map of everything you know</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
+      <div class="frow"><div class="fl">Retrieves the exact note that answers you</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
+      <div class="frow"><div class="fl">Brings your existing AI chats into your brain</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
+      <div class="frow"><div class="fl">Verifies AI work before it counts as done</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
+      <div class="frow"><div class="fl">An independent audit tries to disprove the work</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
+      <div class="frow"><div class="fl">Confidence labels and dates on every fact</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
+      <div class="frow"><div class="fl">Tells you what is stale or missing</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
+      <div class="frow"><div class="fl">Cites the source for its answers</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="part">&#9680;</span></div></div>
+      <div class="frow"><div class="fl">Prompts run on private infrastructure</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
+      <div class="frow"><div class="fl">Your knowledge is plain text you own and export</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="part">&#9680;</span></div></div>
+      <div class="frow"><div class="fl">Runs on your own machine</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
+      <div class="frow"><div class="fl">Sends only the relevant slice, not everything</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
+      <div class="frow"><div class="fl">Routes routine work to cheaper local models</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
+      <div class="frow"><div class="fl">Open-ended general conversation</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="yes">&#10003;</span></div></div>
+      <div class="frow"><div class="fl">Chat history you can revisit</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="yes">&#10003;</span></div></div>
+      <div class="frow"><div class="fl">The latest frontier model with zero effort</div><div class="fm fmt"><span class="part">&#9680;</span></div><div class="fm"><span class="yes">&#10003;</span></div></div>
+      <div class="frow"><div class="fl">Ready to use in seconds, nothing to set up</div><div class="fm fmt"><span class="no">&#10007;</span></div><div class="fm"><span class="yes">&#10003;</span></div></div>
+    </div>
+    <p class="featleg"><b>&#9680;</b> partial or limited. A standard chat wins on instant setup and always
+    running the newest model. Macrothought routes to those models when a task needs them, and adds the
+    memory, verification and privacy a chat window has no way to give you.</p>
   </div>
 </section>
 
