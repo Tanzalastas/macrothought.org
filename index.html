@@ -188,8 +188,15 @@ footer .fl a{color:var(--muted);font-size:.72rem}
 .brow.mt .bfill{background:linear-gradient(90deg,var(--teal),#7fe8f7);min-width:5px;box-shadow:0 0 12px rgba(73,197,216,.45)}
 .brow.std .bfill{background:linear-gradient(90deg,rgba(240,168,58,.55),rgba(240,168,58,.9))}
 .brow .bsub{font-family:var(--mono);font-size:.6rem;color:var(--faint);letter-spacing:.04em}
-.benchnote{margin-top:6px;color:var(--muted);font-size:.92rem;max-width:660px}
+.benchnote{margin-top:22px;color:var(--muted);font-size:.92rem;max-width:660px}
 .benchnote b{color:var(--ink);font-weight:400}
+.bstats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:30px}
+.bt{background:var(--panel);border:1px solid var(--edge);border-radius:12px;padding:16px 17px}
+.bt .bn{font-family:var(--mono);font-size:1.7rem;color:var(--teal);font-variant-numeric:tabular-nums;line-height:1}
+.bt.money .bn{color:var(--amber)}
+.bt .bn span{font-size:.9rem;color:var(--faint)}
+.bt .bk{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-top:9px;font-family:var(--mono)}
+.bt .bx{font-size:.66rem;color:var(--faint);margin-top:3px}
 </style>
 </head>
 <body class="mt-preload">
@@ -370,12 +377,21 @@ footer .fl a{color:var(--muted);font-size:.72rem}
         <div class="bsub">no memory of your files, so it carries the whole vault to answer one question</div>
       </div>
     </div>
-    <p class="benchnote">Averaged per grounded answer. Finding the answer is deterministic, so it costs
-    <b>zero model tokens</b> and about 20ms. That 180k bar is the honest worst case, when you paste
-    everything because you don't remember which note holds the answer. Hand a chat the single right file
-    instead and a prior head-to-head still measured <b>about 10x fewer tokens</b>, because recall returns
-    the section, not the whole file. And a chat re-sends its full history on every turn, so the longer you
-    work, the wider the gap grows.</p>
+    <div class="bstats">
+      <div class="bt"><div class="bn">569</div><div class="bk">tokens per answer</div><div class="bx">and it stays flat</div></div>
+      <div class="bt"><div class="bn">43<span>ms</span></div><div class="bk">to find it</div><div class="bx">deterministic, no network</div></div>
+      <div class="bt"><div class="bn">0</div><div class="bk">tokens to search</div><div class="bx">the retrieval is free</div></div>
+      <div class="bt"><div class="bn">298<span>&times;</span></div><div class="bk">fewer over 20 turns</div><div class="bx">a chat re-sends its history</div></div>
+      <div class="bt money"><div class="bn">$0.17</div><div class="bk">per 100 answers</div><div class="bx">vs $54 pasting the vault</div></div>
+      <div class="bt"><div class="bn">5<span>/5</span></div><div class="bk">right note</div><div class="bx">prior head-to-head, correct</div></div>
+    </div>
+    <p class="benchnote">Averaged per grounded answer, measured over the live 249-note vault. Finding the
+    answer is deterministic, so it costs <b>zero model tokens</b> and about 40ms. Dollar figures assume
+    <b>$3 per million input tokens</b>, a mid-tier model rate. That 180k bar is the honest worst case,
+    when you paste everything because you don't remember which note holds the answer. Hand a chat the
+    single right file instead and a prior head-to-head still measured <b>about 10x fewer tokens</b>,
+    because recall returns the section, not the whole file. And a chat re-sends its full history on every
+    turn, so the longer you work, the wider the gap grows.</p>
   </div>
 </section>
 
