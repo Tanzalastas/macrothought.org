@@ -176,6 +176,20 @@ footer .fl a{color:var(--muted);font-size:.72rem}
 /* ---- video showcase ---- */
 #motion .frame{border:1px solid var(--edge);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);margin-top:26px}
 #motion video{width:100%;display:block;background:var(--bg)}
+/* ---- benchmark ---- */
+.bench{margin-top:32px;display:flex;flex-direction:column;gap:26px}
+.brow .bhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--mono)}
+.brow .bl{font-size:.74rem;color:var(--ink)}
+.brow .bv{font-size:.9rem;font-weight:600;white-space:nowrap}
+.brow.mt .bv{color:var(--teal)}
+.brow.std .bv{color:var(--amber)}
+.btrack{height:15px;background:#0c1015;border:1px solid var(--edge);border-radius:8px;overflow:hidden;margin:9px 0 6px}
+.bfill{height:100%;border-radius:7px}
+.brow.mt .bfill{background:linear-gradient(90deg,var(--teal),#7fe8f7);min-width:5px;box-shadow:0 0 12px rgba(73,197,216,.45)}
+.brow.std .bfill{background:linear-gradient(90deg,rgba(240,168,58,.55),rgba(240,168,58,.9))}
+.brow .bsub{font-family:var(--mono);font-size:.6rem;color:var(--faint);letter-spacing:.04em}
+.benchnote{margin-top:6px;color:var(--muted);font-size:.92rem;max-width:660px}
+.benchnote b{color:var(--ink);font-weight:400}
 </style>
 </head>
 <body class="mt-preload">
@@ -334,6 +348,34 @@ footer .fl a{color:var(--muted);font-size:.72rem}
     <div class="frame" style="margin-top:34px"><img src="assets/stats-dashboard.jpg" alt="Usage dashboard · tokens, sessions, activity and models measured over time" loading="lazy"></div>
     <p class="cap"><b>Everything gets measured.</b> Tokens, sessions, activity and which models did the work,
     tracked over time. If you can't see it, you can't govern it.</p>
+  </div>
+</section>
+
+<!-- 4.5 · BENCHMARK -->
+<section class="std" id="benchmark">
+  <div class="wrap">
+    <div class="kick">the efficiency</div>
+    <h2>Ask your notes. Pay for a sentence, <em>not a library.</em></h2>
+    <p class="lead">A real test on this vault: 249 notes, about 180,000 tokens of knowledge. Eight real
+    questions, measured with the recall tool that ships with the system.</p>
+    <div class="bench">
+      <div class="brow mt">
+        <div class="bhead"><span class="bl">Macrothought recall</span><span class="bv">569 tokens</span></div>
+        <div class="btrack"><div class="bfill" style="width:0.3%"></div></div>
+        <div class="bsub">the answering section, located for free</div>
+      </div>
+      <div class="brow std">
+        <div class="bhead"><span class="bl">Standard chat, your notes pasted in</span><span class="bv">180,700 tokens</span></div>
+        <div class="btrack"><div class="bfill" style="width:100%"></div></div>
+        <div class="bsub">no memory of your files, so it carries the whole vault to answer one question</div>
+      </div>
+    </div>
+    <p class="benchnote">Averaged per grounded answer. Finding the answer is deterministic, so it costs
+    <b>zero model tokens</b> and about 20ms. That 180k bar is the honest worst case, when you paste
+    everything because you don't remember which note holds the answer. Hand a chat the single right file
+    instead and a prior head-to-head still measured <b>about 10x fewer tokens</b>, because recall returns
+    the section, not the whole file. And a chat re-sends its full history on every turn, so the longer you
+    work, the wider the gap grows.</p>
   </div>
 </section>
 
