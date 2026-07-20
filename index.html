@@ -173,6 +173,9 @@ footer .fl a{color:var(--muted);font-size:.72rem}
 #plain .pt h3{font-family:var(--serif);font-size:1.34rem;font-weight:400;margin:9px 0 8px;color:var(--ink)}
 #plain .pt p{color:var(--muted);font-size:1rem;line-height:1.55}
 #plain .pt p b{color:var(--ink);font-weight:400}
+/* ---- video showcase ---- */
+#motion .frame{border:1px solid var(--edge);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);margin-top:26px}
+#motion video{width:100%;display:block;background:var(--bg)}
 </style>
 </head>
 <body class="mt-preload">
@@ -278,6 +281,22 @@ footer .fl a{color:var(--muted);font-size:.72rem}
         you can spin, explore and read at depth.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- 3.5 · THE MAP IN MOTION -->
+<section class="std" id="motion">
+  <div class="wrap">
+    <div class="kick">the map, in motion</div>
+    <h2>Watch the whole thing <em>move.</em></h2>
+    <p class="lead">A real screen recording, no edits. Layouts glide from one into the next, the vault
+    wraps into 3D, and focusing one corner pushes the rest into place.</p>
+    <div class="frame">
+      <video id="showcase-vid" muted loop playsinline preload="none" poster="assets/showcase-poster.jpg">
+        <source src="assets/showcase.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="cap"><b>Live capture.</b> Force galaxy, circle, rings, tree, the 3D cylinder and focus, all from one markdown vault.</p>
   </div>
 </section>
 
@@ -529,6 +548,11 @@ footer .fl a{color:var(--muted);font-size:.72rem}
   (function tick(now){const p=Math.min(1,(now-t0)/1200),ease=1-Math.pow(1-p,3);
     el.textContent=Math.round(N*ease);if(p<1)requestAnimationFrame(tick);})(t0);}},{threshold:.6});
   document.querySelectorAll("#proof .n").forEach(el=>io.observe(el));})();
+/* showcase video: play when it scrolls into view, pause when it leaves (muted, lazy) */
+(function(){var v=document.getElementById("showcase-vid");if(!v)return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{threshold:.35});
+  io.observe(v);})();
 </script>
 <script>
 /* Pre-entry branding: play the MT intro, then shatter its last frame's pixels
