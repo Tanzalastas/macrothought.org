@@ -367,8 +367,8 @@ footer .fl a{color:var(--muted);font-size:.72rem}
     questions, measured with the recall tool that ships with the system.</p>
     <div class="bench">
       <div class="brow mt">
-        <div class="bhead"><span class="bl">Macrothought recall</span><span class="bv">569 tokens</span></div>
-        <div class="btrack"><div class="bfill" style="width:0.3%"></div></div>
+        <div class="bhead"><span class="bl">Macrothought recall</span><span class="bv">635 tokens</span></div>
+        <div class="btrack"><div class="bfill" style="width:0.35%"></div></div>
         <div class="bsub">the answering section, located for free</div>
       </div>
       <div class="brow std">
@@ -378,20 +378,23 @@ footer .fl a{color:var(--muted);font-size:.72rem}
       </div>
     </div>
     <div class="bstats">
-      <div class="bt"><div class="bn">569</div><div class="bk">tokens per answer</div><div class="bx">and it stays flat</div></div>
-      <div class="bt"><div class="bn">43<span>ms</span></div><div class="bk">to find it</div><div class="bx">deterministic, no network</div></div>
+      <div class="bt"><div class="bn">27</div><div class="bk">questions tested</div><div class="bx">real, from the live vault</div></div>
+      <div class="bt"><div class="bn">96<span>%</span></div><div class="bk">opened the right note</div><div class="bx">26 of 27</div></div>
+      <div class="bt"><div class="bn">47<span>ms</span></div><div class="bk">avg to find it</div><div class="bx">p95 65ms, deterministic</div></div>
+      <div class="bt"><div class="bn">635</div><div class="bk">tokens per answer</div><div class="bx">median 599, and flat</div></div>
       <div class="bt"><div class="bn">0</div><div class="bk">tokens to search</div><div class="bx">the retrieval is free</div></div>
-      <div class="bt"><div class="bn">298<span>&times;</span></div><div class="bk">fewer over 20 turns</div><div class="bx">a chat re-sends its history</div></div>
-      <div class="bt money"><div class="bn">$0.17</div><div class="bk">per 100 answers</div><div class="bx">vs $54 pasting the vault</div></div>
-      <div class="bt"><div class="bn">5<span>/5</span></div><div class="bk">right note</div><div class="bx">prior head-to-head, correct</div></div>
+      <div class="bt"><div class="bn">292<span>&times;</span></div><div class="bk">fewer than paste-all</div><div class="bx">per grounded answer</div></div>
+      <div class="bt money"><div class="bn">$0.05</div><div class="bk">for all 27 answers</div><div class="bx">vs $15 pasting the vault</div></div>
+      <div class="bt"><div class="bn">298<span>&times;</span></div><div class="bk">over a 20-turn session</div><div class="bx">a chat re-sends its history</div></div>
     </div>
-    <p class="benchnote">Averaged per grounded answer, measured over the live 249-note vault. Finding the
-    answer is deterministic, so it costs <b>zero model tokens</b> and about 40ms. Dollar figures assume
-    <b>$3 per million input tokens</b>, a mid-tier model rate. That 180k bar is the honest worst case,
-    when you paste everything because you don't remember which note holds the answer. Hand a chat the
-    single right file instead and a prior head-to-head still measured <b>about 10x fewer tokens</b>,
-    because recall returns the section, not the whole file. And a chat re-sends its full history on every
-    turn, so the longer you work, the wider the gap grows.</p>
+    <p class="benchnote">Measured across 27 real questions on the live 249-note vault. Accuracy is whether
+    recall opened a note that answers the question (one miss, one question excluded because only the gate's
+    code holds that answer, not a note). Finding the answer is deterministic, so it costs <b>zero model
+    tokens</b>. Dollar figures assume <b>$3 per million input tokens</b>, a mid-tier model rate. The 180k
+    bar is the honest worst case, when you paste everything because you don't remember which note holds the
+    answer. Hand a chat the single right file instead and a prior head-to-head still measured <b>about 10x
+    fewer tokens</b>, because recall returns the section, not the whole file. And a chat re-sends its full
+    history on every turn, so the longer you work, the wider the gap grows.</p>
   </div>
 </section>
 
