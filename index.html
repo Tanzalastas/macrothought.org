@@ -156,6 +156,7 @@ footer .fl a{color:var(--muted);font-size:.72rem}
 /* ---- video showcase ---- */
 #motion .frame{border:1px solid var(--edge);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);margin-top:26px}
 #motion video{width:100%;display:block;background:var(--bg)}
+#tree .views video{width:100%;display:block;background:var(--bg)}
 /* ---- benchmark ---- */
 .bench{margin-top:32px;display:flex;flex-direction:column;gap:26px}
 .brow .bhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--mono)}
@@ -356,9 +357,11 @@ footer .fl a{color:var(--muted);font-size:.72rem}
         orbiting the core, and you can drag them and watch them re-settle in real time.</p>
       </div>
       <div>
-        <div class="frame"><img src="assets/tree-3d-focus.jpg" alt="The whole vault as a 3D sphere, every note distributed around a ball you can orbit" loading="lazy"></div>
-        <p class="cap"><b>The whole vault as a 3D sphere.</b> Flip on 3D and the entire map wraps around a ball
-        you can orbit, spin and read at depth. Departments can also grow into their own 3D cylinders.</p>
+        <div class="frame"><video id="sphere-vid" muted loop playsinline preload="none" poster="assets/sphere-3d-poster.jpg" aria-label="The whole vault rotating as a 3D sphere, every note distributed around a ball you can orbit">
+          <source src="assets/sphere-3d.mp4" type="video/mp4">
+        </video></div>
+        <p class="cap"><b>The whole vault as a 3D sphere — live, rotating.</b> Flip on 3D and the entire map wraps
+        around a ball you can orbit, spin and read at depth. Departments can also grow into their own 3D cylinders.</p>
       </div>
     </div>
   </div>
@@ -835,10 +838,11 @@ footer .fl a{color:var(--muted);font-size:.72rem}
   (function tick(now){const p=Math.min(1,(now-t0)/1200),ease=1-Math.pow(1-p,3);
     el.textContent=Math.round(N*ease);if(p<1)requestAnimationFrame(tick);})(t0);}},{threshold:.6});
   document.querySelectorAll("#proof .n").forEach(el=>io.observe(el));})();
-/* showcase video: play when it scrolls into view, pause when it leaves (muted, lazy) */
-(function(){var v=document.getElementById("showcase-vid");if(!v)return;
+/* muted videos: play when they scroll into view, pause when they leave (lazy) */
+(function(){var vids=["showcase-vid","sphere-vid"].map(function(id){return document.getElementById(id);}).filter(Boolean);
+  if(!vids.length)return;
   var io=new IntersectionObserver(function(es){es.forEach(function(e){
-    if(e.isIntersecting){var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{threshold:.35});
-  io.observe(v);})();
+    if(e.isIntersecting){var p=e.target.play();if(p&&p.catch)p.catch(function(){});}else{e.target.pause();}});},{threshold:.35});
+  vids.forEach(function(v){io.observe(v);});})();
 </script>
 </body></html>
