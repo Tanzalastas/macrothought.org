@@ -27,8 +27,12 @@ h2 em{color:var(--amber);font-style:normal}
 .cap b{color:var(--muted);font-weight:400}
 /* ---------- 1 · hero: image-as-canvas, text bottom-left ---------- */
 #hero{position:relative;min-height:96vh;display:flex;align-items:flex-end}
-#hero .bgi{position:absolute;inset:0;background:url(assets/hero-sky.jpg) center 38%/cover no-repeat}
+#hero .bgi{position:absolute;inset:0;background:url(assets/hero-sky.jpg) center 38%/cover no-repeat;
+  transform-origin:58% 42%;will-change:transform;animation:heroDrift 46s ease-in-out infinite alternate}
+@keyframes heroDrift{from{transform:scale(1.04) translate3d(0,0,0)}to{transform:scale(1.09) translate3d(-1.4%,1.1%,0)}}
+@media(prefers-reduced-motion:reduce){#hero .bgi{animation:none;transform:scale(1.04)}}
 #hero .veil{position:absolute;inset:0;background:
+  radial-gradient(120% 90% at 50% 34%,transparent 42%,rgba(11,14,21,.5) 82%,rgba(11,14,21,.9) 100%),
   linear-gradient(180deg,rgba(11,14,21,.42) 0%,rgba(11,14,21,.12) 34%,rgba(11,14,21,.55) 68%,rgba(11,14,21,.96) 100%)}
 #hero .fg{position:relative;z-index:1;width:100%;padding:0 0 9vh}
 #hero .brand{position:absolute;top:26px;left:0;right:0}
