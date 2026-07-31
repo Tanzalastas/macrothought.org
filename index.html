@@ -77,7 +77,7 @@ section.std{padding:88px 0;border-top:1px solid var(--edge)}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:34px}
 .card{background:var(--panel);border:1px solid var(--edge);border-radius:12px;padding:22px}
 .card h3{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:10px}
-.card.spine h3{color:var(--violet)}.card.local h3{color:var(--green)}.card.frontier h3{color:var(--teal)}
+.card.spine h3{color:var(--violet)}.card.local h3{color:var(--green)}.card.frontier h3{color:var(--teal)}.card.route h3{color:var(--amber)}
 .card p{font-size:.9rem;color:var(--muted)}
 .card p b{color:var(--ink);font-weight:400}
 /* ---------- 5 · use cases: editorial offset list ---------- */
@@ -393,8 +393,10 @@ footer .fl a{color:var(--muted);font-size:.72rem}
     <div class="kick">the consulate · the governing body</div>
     <h2>Verified, or it doesn't <em>ship.</em></h2>
     <p class="lead">Most AI tools end when the model stops talking. Macrothought keeps going. Its
-    orchestration layer turns your intent into <b>verified, gated releases</b>. An agent finishing its
-    turn is only the first step; the work still has to pass its checks before it counts.</p>
+    orchestration layer turns your intent into <b>verified, gated releases</b>. Your map isn't a search box
+    bolted on the side; it feeds every stage, from the context a task is handed to the checks it has to
+    pass. An agent finishing its turn is only the first step; the work still has to clear those checks
+    before it counts.</p>
     <div id="pipe">
       <span class="stage">intent</span><span class="arr">→</span>
       <span class="stage">requirements</span><span class="arr">→</span>
@@ -417,6 +419,10 @@ footer .fl a{color:var(--muted);font-size:.72rem}
       <div class="card frontier"><h3>frontier intelligence</h3>
         <p><b>Where judgment matters.</b> Frontier agents take design, hard repair and adversarial audit.
         Everything they claim is re-verified by the spine.</p></div>
+      <div class="card route"><h3>explainable routing</h3>
+        <p><b>Every decision shows its work.</b> Whether a job runs local or frontier, alone or as a swarm,
+        is chosen from its shape, risk and context size, and the reasoning is recorded. You can always see
+        why a task ran where it did.</p></div>
     </div>
     <div class="frame" style="margin-top:34px"><img src="assets/stats-dashboard.jpg" alt="Usage dashboard · tokens, sessions, activity and models measured over time" loading="lazy"></div>
     <p class="cap"><b>Everything gets measured.</b> Tokens, sessions, activity and which models did the work,
@@ -617,6 +623,7 @@ footer .fl a{color:var(--muted);font-size:.72rem}
       <div class="frow"><div class="fl">Runs on your own machine</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
       <div class="frow"><div class="fl">Sends only the relevant slice, not everything</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
       <div class="frow"><div class="fl">Routes routine work to cheaper local models</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
+      <div class="frow"><div class="fl">Shows why each task ran on the model it did</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="no">&#10007;</span></div></div>
       <div class="frow"><div class="fl">Open-ended general conversation</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="yes">&#10003;</span></div></div>
       <div class="frow"><div class="fl">Chat history you can revisit</div><div class="fm fmt"><span class="yes">&#10003;</span></div><div class="fm"><span class="yes">&#10003;</span></div></div>
       <div class="frow"><div class="fl">The latest frontier model with zero effort</div><div class="fm fmt"><span class="part">&#9680;</span></div><div class="fm"><span class="yes">&#10003;</span></div></div>
@@ -726,8 +733,10 @@ footer .fl a{color:var(--muted);font-size:.72rem}
         <div><h3>Your own hosted second brain</h3>
         <p>A managed, governed vault we host and maintain, with prompts run through <b>private
         infrastructure</b>. Your own workspace, your own usage, isolated from everyone else's. The
-        payment gate, per-tenant isolation and metering are built and independently audited. The public
-        service goes live once storage, disclosure and the secure edge are in place.</p>
+        payment gate, per-tenant isolation and metering are built and independently audited. Isolation is
+        by construction, not by promise: a member's view can carry only their own workspace fields, and the
+        operational internals behind an answer stay operator-side, checked by a test that fails if they
+        cross over. The public service goes live once storage, disclosure and the secure edge are in place.</p>
         <div class="frame small" style="margin-top:16px"><img src="assets/client-workspace.jpg" alt="A member workspace, your own plan, usage and billing, private to you" loading="lazy"></div>
         <p class="cap"><b>Your workspace, preview.</b> Your own plan, usage and billing, private to you.
         Nothing shared with other members.</p></div>
