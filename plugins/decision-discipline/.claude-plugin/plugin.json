@@ -1,0 +1,14 @@
+{
+  "name": "decision-discipline",
+  "description": "Decisions that survive review. The relentless design interview, compiling recorded decisions into a citable doctrine, verdict-first answers, and a register of settled calls.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Tanzalastas"
+  },
+  "keywords": [
+    "decisions",
+    "review",
+    "doctrine",
+    "interview"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "verification",
+  "description": "Falsifiable checks and honest instrumentation. Auditing gates that cannot fail, sabotage and positive controls, chart integrity, the unknown-versus-zero rule, and release gate design.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Tanzalastas"
+  },
+  "keywords": [
+    "verification",
+    "testing",
+    "falsifiability",
+    "controls",
+    "gates"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "name": "macrothought",
+  "owner": {
+    "name": "Tanzalastas"
+  },
+  "metadata": {
+    "description": "The Macrothought method as installable departments. Verification, memory, decision and orchestration discipline, distilled from a working agent estate.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "verification",
+      "source": "./plugins/verification",
+      "description": "Falsifiable checks and honest instrumentation. Auditing gates that cannot fail, sabotage and positive controls, chart integrity, the unknown-versus-zero rule, and release gate design.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Tanzalastas"
+      },
+      "keywords": [
+        "verification",
+        "testing",
+        "falsifiability",
+        "controls",
+        "gates"
+      ],
+      "category": "verification"
+    },
+    {
+      "name": "second-brain",
+      "source": "./plugins/second-brain",
+      "description": "Durable machine-readable memory for agent estates. Department-organized notes, evidence-gated triage of machine suggestions, confidence tagging, and memory lint.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Tanzalastas"
+      },
+      "keywords": [
+        "memory",
+        "knowledge-base",
+        "triage",
+        "organization"
+      ],
+      "category": "second-brain"
+    },
+    {
+      "name": "decision-discipline",
+      "source": "./plugins/decision-discipline",
+      "description": "Decisions that survive review. The relentless design interview, compiling recorded decisions into a citable doctrine, verdict-first answers, and a register of settled calls.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Tanzalastas"
+      },
+      "keywords": [
+        "decisions",
+        "review",
+        "doctrine",
+        "interview"
+      ],
+      "category": "decision-discipline"
+    },
+    {
+      "name": "orchestration",
+      "source": "./plugins/orchestration",
+      "description": "Running many agents without losing the thread. Requirement ledgers, verify-audit-repair loops, context packs, and hygiene for concurrent and long-running agents.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Tanzalastas"
+      },
+      "keywords": [
+        "agents",
+        "orchestration",
+        "coordination",
+        "ledger"
+      ],
+      "category": "orchestration"
+    }
+  ]
+}

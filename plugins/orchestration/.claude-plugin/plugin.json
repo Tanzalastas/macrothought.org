@@ -1,0 +1,14 @@
+{
+  "name": "orchestration",
+  "description": "Running many agents without losing the thread. Requirement ledgers, verify-audit-repair loops, context packs, and hygiene for concurrent and long-running agents.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Tanzalastas"
+  },
+  "keywords": [
+    "agents",
+    "orchestration",
+    "coordination",
+    "ledger"
+  ]
+}
