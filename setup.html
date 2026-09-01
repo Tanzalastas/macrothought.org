@@ -1,0 +1,94 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Macrothought · estate setup</title>
+<style>
+:root{--bg:#0b0e15;--card:#101522;--line:#232a38;--ink:#e7edf6;--dim:#8a93a5;
+--mono:ui-monospace,"SFMono-Regular","JetBrains Mono",Menlo,monospace;--serif:Georgia,"Times New Roman",serif;
+--acc:#9fd0ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.6}
+main{max-width:760px;margin:0 auto;padding:48px 20px 96px}
+h1{font-family:var(--mono);font-weight:600;font-size:1.5rem;letter-spacing:.04em}
+h1 a{color:var(--dim);text-decoration:none;font-size:.9rem}
+h2{font-family:var(--mono);font-size:1.02rem;margin:36px 0 8px;border-bottom:1px solid var(--line);padding-bottom:8px}
+p.lead{color:var(--dim);max-width:62ch}
+ul{padding-left:1.2em}li{margin:7px 0}
+.price{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 26px;margin:30px 0;text-align:center}
+.price .n{font-family:var(--mono);font-size:2.1rem;font-weight:600}
+.price .cap{color:var(--dim);font-size:.9rem;margin-top:6px}
+.buy{display:inline-block;margin-top:16px;padding:13px 34px;border-radius:9px;background:var(--acc);color:#0b0e15;
+font-family:var(--mono);font-weight:600;text-decoration:none;font-size:1rem}
+.terms,.small{color:var(--dim);font-size:.9rem}
+code{font-family:var(--mono);font-size:.88em;color:var(--acc)}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+td,th{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{font-family:var(--mono);font-size:.8rem;color:var(--dim);letter-spacing:.06em}
+</style></head><body><main>
+<h1>Estate setup <a href="index.html">· macrothought.org</a></h1>
+
+<p class="lead">A working agent estate installed in your environment, on your machines,
+under your own Anthropic account. Nothing hosted, nothing proxied, nothing of ours
+between you and your model. You get the method that runs this site's own estate.</p>
+
+<h2>What gets built</h2>
+<ul>
+<li><b>Department memory</b> for your actual projects: one domain per folder, one topic
+per note, a loaded index, confidence tags on every claim.</li>
+<li><b>The verification layer</b>: a memory lint with a positive control (we plant a
+defect and your lint must catch it), plus an audit of the one check or gate you
+already rely on most.</li>
+<li><b>Routines</b>: session-end capture and a weekly lint review that actually fire.</li>
+<li><b>Session hygiene</b>: formatting and secret-scan hooks where your stack supports them.</li>
+<li><b>The public skill pack</b>, installed and tuned to your vocabulary.</li>
+<li><b>A mini brain-map</b>: a self-contained page that renders your vault as a radial map.
+No external requests, works offline, yours to keep.</li>
+</ul>
+<p class="small">Out of scope: rebuilding our showcase apps, dashboards, or hosting
+anything for you. You get the working method installed, not our products rebuilt.</p>
+
+<h2>How it runs</h2>
+<p>Fully async, over email. Purchase triggers an intake questionnaire (fifteen minutes).
+Then a tailored runbook drives the build: each phase ends with a piece of evidence you
+send back. Email rounds are answered within one business day; a typical setup completes
+in five to ten days. There are no calls to schedule.</p>
+
+<h2>What "done" means</h2>
+<p>Delivery closes when four checks pass on your machine, run by you, with evidence:</p>
+<table>
+<tr><th>check</th><th>pass</th><th>fail</th></tr>
+<tr><td>Recall</td><td>five questions about your projects answered with citations to real notes</td><td>an answer with no note behind it</td></tr>
+<tr><td>Lint control</td><td>a planted defect fires the lint, removing it quiets the lint</td><td>lint stays green with the plant in place</td></tr>
+<tr><td>Routine</td><td>observed firing on its schedule</td><td>only works when invoked by hand</td></tr>
+<tr><td>Map</td><td>your vault renders in your browser</td><td>blank page or missing departments</td></tr>
+</table>
+<p class="small">Every check has a defined failure. A setup that cannot fail its
+acceptance is not accepted, it is assumed. This is the same discipline the
+<a href="skills.html" style="color:var(--acc)">verification department</a> teaches.</p>
+
+<div class="price">
+<div class="n">$499</div>
+<div class="cap">first five setups, then $1,299 · one-time · mini brain-map included</div>
+<a class="buy" href="https://buy.stripe.com/3cI6oI1G86Zs4NndYg0Ba02">Buy a setup</a>
+<div class="cap">Stripe checkout · you receive the intake questionnaire within one business day</div>
+</div>
+
+<h2>Terms, posted</h2>
+<ul class="terms">
+<li>Full refund on request any time before work starts (before we send your tailored runbook).</li>
+<li>50% refund after the runbook and department design are delivered.</li>
+<li>No refund after the four acceptance checks pass on your machine.</li>
+<li>30 days of async email support after acceptance, for anything the setup broke or missed.</li>
+<li>One person delivers this. Five slots exist at this price so quality holds.</li>
+</ul>
+
+<h2>What it requires from you</h2>
+<ul class="terms">
+<li>Your own machines and your own Anthropic account (any paid plan).</li>
+<li>Claude Code installed and working.</li>
+<li>Fifteen minutes for the intake, and email responsiveness during the build.</li>
+</ul>
+
+<p class="small">Questions before buying: open an issue on the
+<a href="https://github.com/Tanzalastas/macrothought.org" style="color:var(--acc)">repo</a>
+and ask in public. If the answer would change your decision, it belongs where the next
+person can read it.</p>
+</main></body></html>
