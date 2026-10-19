@@ -25,4 +25,4 @@ The test runners in tests/ use Playwright and axe-core. Set PLAYWRIGHT_MODULE, C
 
 ## Credit and license
 
-The department-plugin structure credits [headcount](https://github.com/cbrock84/headcount) by Chris Brock. The Macrothought skills and original site artwork are MIT licensed; see LICENSE. Legacy media are retained in Git but excluded from this release's website output.
+The Macrothought skills and original site artwork are MIT licensed; see LICENSE. Legacy media are retained in Git but excluded from this release's website output.
