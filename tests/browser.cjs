@@ -24,6 +24,9 @@ const server=http.createServer((req,res)=>{
    for(const namePage of ['index.html','skills.html','app.html','setup.html']){
     const response=await page.goto(base+'/'+namePage);assert.equal(response.status(),200);
     assert.equal(await page.locator('h1').count(),1);assert.equal(await page.locator('main').count(),1);
+    const contacts=await page.locator('a[href^="mailto:"]').evaluateAll(nodes=>nodes.map(a=>({href:a.getAttribute('href'),text:a.textContent.trim()})));
+    assert(contacts.length>=2);assert(contacts.every(a=>a.href==='mailto:macrothought@macrothought.org'&&a.text.startsWith('Contact us')));
+    assert(!/(?:buy\.stripe|\$\d|pricing|refund|subscription|checkout|delivery terms)/i.test(await page.locator('body').textContent()),'Stale offer copy in '+namePage);
     const geometry=await page.evaluate(()=>({width:innerWidth,scrollWidth:document.documentElement.scrollWidth,overflow:[...document.querySelectorAll('main,header,footer,a,button,input,select,h1,h2,h3,p')].filter(el=>{let r=el.getBoundingClientRect();return r.width>0&&(r.right>innerWidth+1||r.left< -1)&&!el.classList.contains('skip')}).map(el=>el.tagName+':'+el.textContent.slice(0,35))}));
     assert(geometry.scrollWidth<=width+1, namePage+' overflow at '+width);assert.equal(geometry.overflow.length,0,JSON.stringify(geometry));
     results.layouts.push({page:namePage,viewport:name,width,height,overflow:false});
@@ -32,7 +35,7 @@ const server=http.createServer((req,res)=>{
      await page.screenshot({path:path.join(screenshots,'home-'+name+'-hero.png')});
      await page.locator('.demo-shell').screenshot({path:path.join(screenshots,'workspace-'+name+'.png')});
     }
-    if(namePage==='skills.html'&&['phone','desktop'].includes(name))await page.screenshot({path:path.join(screenshots,'skills-'+name+'.png')});
+    if(['skills.html','app.html','setup.html'].includes(namePage)&&['phone','desktop'].includes(name))await page.screenshot({path:path.join(screenshots,namePage.replace('.html','')+'-'+name+'.png')});
    }
    await page.goto(base+'/index.html');
    await page.locator('#panel-map [data-node="source-library"]').click();
@@ -58,11 +61,11 @@ const server=http.createServer((req,res)=>{
   }
   const page=await browser.newPage({viewport:{width:1440,height:1000}});
   await page.goto(base+'/index.html');await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.textContent),'Skip to content');await page.keyboard.press('Enter');assert.equal(new URL(page.url()).hash,'#main');
-  results.interactions.push({skipLink:true});
+  results.interactions.push({skipLink:true,contactLinksValidated:true,staleOfferCopyAbsent:true});
   for(const filename of ['index.html','skills.html','app.html','setup.html']){
    await page.goto(base+'/'+filename);
    const targets=await page.locator('a[href]').evaluateAll(nodes=>nodes.map(a=>a.getAttribute('href')));
-   for(const href of [...new Set(targets)].filter(h=>!h.startsWith('http'))){
+   for(const href of [...new Set(targets)].filter(h=>!h.startsWith('http')&&!h.startsWith('mailto:'))){
     const u=new URL(href,base+'/'+filename), resp=await page.request.get(u.href.split('#')[0]);assert.equal(resp.status(),200,href);
     if(u.hash){await page.goto(u.href);assert.equal(await page.locator(u.hash).count(),1,href);}
     results.links.push({from:filename,href,status:200});

@@ -19,7 +19,7 @@ No analytics, external fonts, remote script dependencies, payment actions, accou
 
 Status is dated 19 October 2026. Working local tools, independently reviewed isolated fixes, newer isolated UX work, experimental governance, and roadmap direction have different labels. The galaxy is a website illustration, not the application renderer. Its example data and activity are invented. A connected Sol chat bridge is not established.
 
-The public site repository and the MIT-licensed skill pack remain public references. The complete Consulate source is not presented as a public download. Earlier commercial offers, mailbox delivery, hosted account access, releases, and deployment settings require owner verification before a publishing decision. No paid services or live systems were changed.
+The public site repository and the MIT-licensed skill pack remain public references. The complete Consulate source is not presented as a public download. The owner requested removal of earlier commercial offers in favor of Contact us links to the verified mailbox, macrothought@macrothought.org. Hosted account access, releases, and deployment settings still require verification before a publishing decision. No paid services or live systems were changed.
 
 ## Review and publishing
 
