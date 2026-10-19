@@ -1,0 +1,17 @@
+{
+  "description": "Exact static document-root allowlist; checked against the Jekyll build before publication.",
+  "files": [
+    "index.html",
+    "skills.html",
+    "app.html",
+    "setup.html",
+    "LICENSE",
+    "CNAME",
+    "robots.txt",
+    "sitemap.xml",
+    "assets/site.css",
+    "assets/site.js",
+    "assets/galaxy.svg",
+    "assets/favicon.svg"
+  ]
+}

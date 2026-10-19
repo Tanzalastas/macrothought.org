@@ -1,32 +1,28 @@
-# Macrothought website — isolated review
+# Macrothought
 
-A static redesign of macrothought.org, based on the existing website repository at `2c088f94a49fb2014309d844b99f1375d8653903`. This is an unpublished review candidate. All pages carry `noindex,nofollow`.
+The public website at https://macrothought.org and the MIT-licensed Macrothought skill pack. The website describes working local capabilities, isolated previews, experimental functionality, and the galaxy workspace direction.
 
-Open `index.html` directly, or run `python3 -m http.server 8859 --bind 127.0.0.1` from this directory and visit `http://127.0.0.1:8859`. No build, package install, provider account, or API is required. JavaScript enhances the example and skill search; core content works without it.
+## Website
 
-## Content
+Four static HTML pages share assets/site.css and assets/site.js. The synthetic galaxy and interaction example use invented data. There are no account, payment, or provider calls from the website. Contact: macrothought@macrothought.org. Existing-account and prior-purchase questions are directed to the same mailbox without promising a service or response time.
 
-- `index.html`: project story, synthetic galaxy illustration and three-view interaction, workflows, dated status, architecture, public next steps.
-- `skills.html`: existing seventeen skill descriptions and source links, refreshed styling and accessible search.
-- `app.html`, `setup.html`: informational review pages replacing unverified account/checkout flows in this candidate only.
-- `assets/site.css`, `assets/site.js`: shared responsive presentation and small standalone interactions.
-- `assets/galaxy.svg`, `assets/favicon.svg`: original synthetic artwork. Rebuild the deterministic galaxy with `python3 scripts/create-galaxy.py`.
-- `plugins/` and `.claude-plugin/`: original skill pack, unchanged.
+GitHub Pages publishes main from the repository root. CNAME remains macrothought.org. public-files.json is the exact deployment allowlist. _config.yml excludes source tooling, plugin documents, and legacy media from the website build while preserving them in this repository. A local Jekyll 3.10.0 build must match the allowlist before deployment. No private review materials belong here.
 
-No analytics, external fonts, remote script dependencies, payment actions, account API calls, live transcripts, or private project data are included in the new pages. Existing source media are retained in Git but are not referenced by the redesign or copied into the portable preview.
+## Public skills
 
-## Claims and boundaries
+Four departments, seventeen skills. Each department installs independently:
 
-Status is dated 19 October 2026. Working local tools, independently reviewed isolated fixes, newer isolated UX work, experimental governance, and roadmap direction have different labels. The galaxy is a website illustration, not the application renderer. Its example data and activity are invented. A connected Sol chat bridge is not established.
+```
+/plugin marketplace add Tanzalastas/macrothought.org
+/plugin install verification@macrothought
+```
 
-The public site repository and the MIT-licensed skill pack remain public references. The complete Consulate source is not presented as a public download. The owner requested removal of earlier commercial offers in favor of Contact us links to the verified mailbox, macrothought@macrothought.org. Hosted account access, releases, and deployment settings still require verification before a publishing decision. No paid services or live systems were changed.
+The departments cover verification, second-brain memory, decision discipline, and orchestration. Read skills.html and plugins/ for descriptions and source. Instructions support your workflow; results depend on your tools, permissions, and checks.
 
-## Review and publishing
+## Validation
 
-Private evidence, screenshots, tests, source-preservation records, a claim matrix, and a publishing checklist are supplied separately in the review bundle. The source checkout remains unchanged. No remote is configured for this isolated branch. Do not publish the private review directory.
-
-Before any deployment, obtain explicit authorization, reconcile current canonical source and deployment settings, resolve the old commercial/account routes, verify all public destinations, remove the preview indexing directive deliberately, and run the browser checks against the exact staged files. `CNAME` remains unchanged; its presence is not deployment authorization.
+The test runners in tests/ use Playwright and axe-core. Set PLAYWRIGHT_MODULE, CHROMIUM_PATH, and AXE_PATH for your installed tooling. Browser tests check layouts, navigation, mailto targets without sending email, synthetic view selection, and skill search. Accessibility tests complement manual checks; they are not a certification.
 
 ## Credit and license
 
-The existing Macrothought wordmark, color lineage, plugin content, and MIT license are retained. The department-plugin structure credits [headcount](https://github.com/cbrock84/headcount) by Chris Brock. See `LICENSE`.
+The department-plugin structure credits [headcount](https://github.com/cbrock84/headcount) by Chris Brock. The Macrothought skills and original site artwork are MIT licensed; see LICENSE. Legacy media are retained in Git but excluded from this release's website output.

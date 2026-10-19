@@ -2,7 +2,7 @@
 // Read-only website checks. Launches a temporary local HTTP server; never imports the application.
 const fs = require('node:fs'), path = require('node:path'), http = require('node:http'), assert = require('node:assert/strict');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const root=path.resolve(__dirname,'..'), out=path.resolve(process.env.REVIEW_OUTPUT || path.join(root,'..','review'));
+const root=path.resolve(process.env.SITE_ROOT || path.join(__dirname,'..')), out=path.resolve(process.env.REVIEW_OUTPUT || path.join(root,'..','review'));
 const screenshots=path.join(out,'screenshots'); fs.mkdirSync(screenshots,{recursive:true});
 const types={'.html':'text/html','.css':'text/css','.js':'application/javascript','.svg':'image/svg+xml'};
 const server=http.createServer((req,res)=>{
