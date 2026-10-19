@@ -1,37 +1,32 @@
-# macrothought.org
+# Macrothought website — isolated review
 
-The public home of Macrothought: the site at [macrothought.org](https://macrothought.org) and the Macrothought skill pack for [Claude Code](https://claude.com/claude-code).
+A static redesign of macrothought.org, based on the existing website repository at `2c088f94a49fb2014309d844b99f1375d8653903`. This is an unpublished review candidate. All pages carry `noindex,nofollow`.
 
-## The skill pack
+Open `index.html` directly, or run `python3 -m http.server 8859 --bind 127.0.0.1` from this directory and visit `http://127.0.0.1:8859`. No build, package install, provider account, or API is required. JavaScript enhances the example and skill search; core content works without it.
 
-Four departments, seventeen skills. Each department installs independently, so a project loads only what it needs. Every skill is distilled from methods in daily use on a working agent estate. Nothing in this pack is aspirational: if a skill describes a practice, that practice has shipped software.
+## Content
 
-```
-/plugin marketplace add Tanzalastas/macrothought.org
-/plugin install verification@macrothought
-```
+- `index.html`: project story, synthetic galaxy illustration and three-view interaction, workflows, dated status, architecture, public next steps.
+- `skills.html`: existing seventeen skill descriptions and source links, refreshed styling and accessible search.
+- `app.html`, `setup.html`: informational review pages replacing unverified account/checkout flows in this candidate only.
+- `assets/site.css`, `assets/site.js`: shared responsive presentation and small standalone interactions.
+- `assets/galaxy.svg`, `assets/favicon.svg`: original synthetic artwork. Rebuild the deterministic galaxy with `python3 scripts/create-galaxy.py`.
+- `plugins/` and `.claude-plugin/`: original skill pack, unchanged.
 
-| Department | What it covers |
-|---|---|
-| `verification` | Checks that cannot fail, sabotage and positive controls, chart integrity, unknown versus zero, release gate design. |
-| `second-brain` | Department-organized durable memory, evidence-gated triage of machine suggestions, confidence tagging, memory lint. |
-| `decision-discipline` | The relentless design interview, doctrine compilation, verdict-first citation, a register of settled calls. |
-| `orchestration` | Requirement ledgers, verify-audit-repair loops, context packs, hygiene for concurrent and long-running agents. |
+No analytics, external fonts, remote script dependencies, payment actions, account API calls, live transcripts, or private project data are included in the new pages. Existing source media are retained in Git but are not referenced by the redesign or copied into the portable preview.
 
-Skills are addressed as `department:skill`, for example `verification:sabotage-and-positive-controls` or `orchestration:concurrent-agent-hygiene`. They also load themselves when a request lands in their territory.
+## Claims and boundaries
 
-The full list with descriptions: [skills.html](https://macrothought.org/skills.html).
+Status is dated 19 October 2026. Working local tools, independently reviewed isolated fixes, newer isolated UX work, experimental governance, and roadmap direction have different labels. The galaxy is a website illustration, not the application renderer. Its example data and activity are invented. A connected Sol chat bridge is not established.
 
-## Why these four departments
+The public site repository and the MIT-licensed skill pack remain public references. The complete Consulate source is not presented as a public download. Earlier commercial offers, mailbox delivery, hosted account access, releases, and deployment settings require owner verification before a publishing decision. No paid services or live systems were changed.
 
-Most agent failures we have seen are not model failures. They are checks that could never report failure, memory that silently rotted, decisions relitigated because nobody wrote them down, and fleets of agents stepping on each other. These departments encode what fixed each of those, with the scars documented.
+## Review and publishing
 
-The pack is free under MIT. The hosted Macrothought service builds on the same methods; the site has details.
+Private evidence, screenshots, tests, source-preservation records, a claim matrix, and a publishing checklist are supplied separately in the review bundle. The source checkout remains unchanged. No remote is configured for this isolated branch. Do not publish the private review directory.
 
-## Credit
+Before any deployment, obtain explicit authorization, reconcile current canonical source and deployment settings, resolve the old commercial/account routes, verify all public destinations, remove the preview indexing directive deliberately, and run the browser checks against the exact staged files. `CNAME` remains unchanged; its presence is not deployment authorization.
 
-The department-plugin structure follows [headcount](https://github.com/cbrock84/headcount) by Chris Brock, which demonstrated the shape: a marketplace of independently installable departments. The skills here are original work.
+## Credit and license
 
-## License
-
-MIT. See [LICENSE](LICENSE).
+The existing Macrothought wordmark, color lineage, plugin content, and MIT license are retained. The department-plugin structure credits [headcount](https://github.com/cbrock84/headcount) by Chris Brock. See `LICENSE`.
