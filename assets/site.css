@@ -232,7 +232,7 @@ p {
   left:21%;
   top:20%}
 .label-two {
-  right:1%;
+  right:11%;
   top:47%}
 .label-three {
   left:15%;
@@ -247,6 +247,7 @@ p {
 .art-caption {
   position:absolute;
   left:19%;
+  max-width:70%;
   bottom:2%;
   font:9px/1.7 var(--mono);
   letter-spacing:.05em;
@@ -719,6 +720,8 @@ p {
   min-height:740px}
 .hero-art {
   width:130%}
+.label-two {
+  right:5%}
 }
 
 @media(max-width:1050px) {
@@ -734,8 +737,6 @@ p {
   margin-left:-20%}
 .hero-copy>.sub {
   max-width:34ch}
-.label-two {
-  right:4%}
 .section-head {
   gap:40px}
 .demo-layout {
@@ -796,7 +797,7 @@ p {
   top:13%;
   left:18%}
 .label-two {
-  right:4%;
+  right:5%;
   top:47%}
 .label-three {
   left:13%;
@@ -808,6 +809,7 @@ p {
 .art-caption {
   bottom:0;
   left:17%;
+  max-width:none;
   font-size:8px}
 .hero-bottom {
   align-items:start;
@@ -985,5 +987,4 @@ p {
 .orbit-label{background:#161925}
 .orbit-center{background:#161925;padding:4px 6px;border-radius:3px}
 .art-caption{background:#10121e;padding:6px 8px;font-size:10px}
-.label-two{right:5%}
 @media(max-width:760px){.orbit-label{font-size:9px}.art-caption{font-size:9px;left:12%;bottom:-5%}.orbit-center{font-size:8px}.hero-art{margin-bottom:15px}}

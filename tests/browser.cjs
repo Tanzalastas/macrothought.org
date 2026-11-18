@@ -14,7 +14,7 @@ const server=http.createServer((req,res)=>{
  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
  const base='http://127.0.0.1:'+server.address().port;
  const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH || undefined});
- const results={browser:await browser.version(),layouts:[],interactions:[],links:[],errors:[],externalRequests:[],metrics:{}};
+ const results={browser:await browser.version(),layouts:[],heroText:[],interactions:[],links:[],errors:[],externalRequests:[],skipped:[],metrics:{}};
  try {
   for(const [name,width,height] of [['phone',360,800],['fold-cover',344,882],['phone-wide',390,844],['fold-open',720,900],['tablet',834,1112],['desktop',1440,1000],['wide',1920,1080]]) {
    const context=await browser.newContext({viewport:{width,height},deviceScaleFactor:1,hasTouch:width<900,reducedMotion:'reduce'});
@@ -60,6 +60,28 @@ const server=http.createServer((req,res)=>{
    await context.close();
   }
   const page=await browser.newPage({viewport:{width:1440,height:1000}});
+  // The galaxy illustration bleeds beyond the hero. Its text must remain readable
+  // even when the hero clips the illustration and document.scrollWidth looks fine.
+  for(const [width,customSpacing] of [[390,false],[761,true],[834,false],[1050,false],[1280,false],[1440,false]]) {
+   await page.setViewportSize({width,height:1000});
+   await page.goto(base+'/index.html');
+   if(customSpacing) {
+    await page.addStyleTag({content:'*{letter-spacing:.12em!important;word-spacing:.16em!important;line-height:1.5!important}p{margin-bottom:2em!important}'});
+   }
+   const labels=page.locator('.hero-art .orbit-label,.hero-art .orbit-center,.hero-art figcaption');
+   assert(await labels.count()>0,'Missing galaxy labels and caption');
+   const clipped=await labels.evaluateAll(elements=>{
+    const hero=document.querySelector('.hero').getBoundingClientRect();
+    return elements.filter(label=>{
+     const range=document.createRange();
+     range.selectNodeContents(label);
+     const box=range.getBoundingClientRect();
+     return box.left<hero.left-1 || box.right>hero.right+1 || box.top<hero.top-1 || box.bottom>hero.bottom+1;
+    }).map(label=>label.textContent.trim());
+   });
+   assert.deepEqual(clipped,[],`Clipped hero text at ${width}px: ${clipped.join(', ')}`);
+   results.heroText.push({width,customSpacing,clipped});
+  }
   await page.goto(base+'/index.html');await page.keyboard.press('Tab');assert.equal(await page.evaluate(()=>document.activeElement.textContent),'Skip to content');await page.keyboard.press('Enter');assert.equal(new URL(page.url()).hash,'#main');
   results.interactions.push({skipLink:true,contactLinksValidated:true,staleOfferCopyAbsent:true});
   for(const filename of ['index.html','skills.html','app.html','setup.html']){
@@ -74,9 +96,12 @@ const server=http.createServer((req,res)=>{
   await page.goto(base+'/index.html');
   results.metrics=await page.evaluate(()=>({domNodes:document.querySelectorAll('*').length,resources:performance.getEntriesByType('resource').map(r=>({name:r.name.split('/').pop(),bytes:r.decodedBodySize})),loadMs:performance.getEntriesByType('navigation')[0].loadEventEnd}));
   const nojs=await browser.newContext({javaScriptEnabled:false,viewport:{width:360,height:800}});const n=await nojs.newPage();await n.goto(base+'/index.html');assert(await n.locator('h1').isVisible());assert(await n.locator('noscript').isVisible());assert.equal(await n.locator('.tabs:visible').count(),0);await n.goto(base+'/skills.html');assert.equal(await n.locator('.sk:visible').count(),17);results.interactions.push({noJavaScriptReadable:true});await nojs.close();
-  const fileContext=await browser.newContext();const f=await fileContext.newPage();await f.goto('file://'+path.join(root,'index.html'));await f.getByRole('tab',{name:'Files',exact:true}).click();assert(await f.locator('#panel-files').isVisible());results.interactions.push({portableFileProtocol:true});await fileContext.close();
+  if(process.env.SKIP_FILE_PROTOCOL==='1') results.skipped.push('portableFileProtocol: SKIP_FILE_PROTOCOL=1');
+  else {
+   const fileContext=await browser.newContext();const f=await fileContext.newPage();await f.goto('file://'+path.join(root,'index.html'));await f.getByRole('tab',{name:'Files',exact:true}).click();assert(await f.locator('#panel-files').isVisible());results.interactions.push({portableFileProtocol:true});await fileContext.close();
+  }
   await page.emulateMedia({reducedMotion:'reduce'});assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement).scrollBehavior),'auto');results.interactions.push({reducedMotion:true});
   assert.equal(results.errors.length,0);assert.equal(results.externalRequests.length,0);
-  fs.writeFileSync(path.join(out,'browser-results.json'),JSON.stringify(results,null,2));console.log(JSON.stringify({layouts:results.layouts.length,interactions:results.interactions.length,localLinks:results.links.length,errors:results.errors,externalRequests:results.externalRequests,metrics:results.metrics},null,2));
+  fs.writeFileSync(path.join(out,'browser-results.json'),JSON.stringify(results,null,2));console.log(JSON.stringify({layouts:results.layouts.length,heroText:results.heroText.length,interactions:results.interactions.length,localLinks:results.links.length,errors:results.errors,externalRequests:results.externalRequests,skipped:results.skipped,metrics:results.metrics},null,2));
  } finally {await browser.close();server.close();}
 })().catch(e=>{console.error(e);server.close();process.exitCode=1});
