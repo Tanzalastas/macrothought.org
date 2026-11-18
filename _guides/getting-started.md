@@ -8,7 +8,7 @@ reviewed: 2026-11-18
 ---
 Macrothought's public starting point is a collection of skills for checking work, maintaining knowledge, making decisions, and coordinating agents. A skill is a readable set of instructions that your agent applies using the tools available in your environment. You can inspect the source before installing it and use one department without adopting the whole collection.
 
-The public website also documents an evolving workspace project. Its illustrations, archived captures, and worked examples each carry their own evidence boundary. Begin with one task you already understand. That gives you a clear way to judge whether the skill improves the result.
+The site also covers Consulate, the workspace that is still taking shape. Screenshots show when they were taken, and examples use made-up data. Begin with one task you already understand. That gives you a clear way to judge whether the skill improves the result.
 
 ## Choose a department
 

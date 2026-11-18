@@ -8,7 +8,7 @@ reviewed: 2026-11-18
 ---
 Consulate documentation should help you understand a control, find the source that defines it, and check the result of using it.
 
-This guide combines public skill definitions with a curated reading of the glossary design in an August 2026 source snapshot. That historical interface presented commands, skills, and change history with expandable details. Its exact controls and current runtime behavior still require verification against the active application. The public methods linked below can be read and applied independently.
+This guide combines public skill definitions with a curated reading of the glossary design in an August 2026 source snapshot. That historical interface presented commands, skills, and change history with expandable details. The current application may work differently. The methods linked below work on their own.
 
 ## Read a command or skill entry
 

@@ -8,7 +8,7 @@ reviewed: 2026-11-18
 ---
 Macrothought's public architecture description combines a Python core, browser interfaces, Markdown knowledge, and records for relationships and operational work. The organizing idea is that each kind of record has a clear purpose and that views can refer to the same source material.
 
-This guide explains that public design through an invented example. The website repository supplies the site and the public skill pack. The guide describes the workspace direction and published working practices. A current 1.4 application installation, its runtime configuration, and its full source tree require their own verified documentation.
+This guide walks through that design with a made-up example. It covers where the workspace is heading and the practices behind it. Setup and configuration for the current 1.4 application aren't documented here yet.
 
 ## Knowledge, relationships, work, and views
 

@@ -8,7 +8,7 @@ reviewed: 2026-11-18
 ---
 This repository contains the public Macrothought website and its skill pack. The site uses Jekyll to combine pages, a guide collection, shared layouts, and assets into a static build. A local contribution should leave a reviewer with a reproducible preview and evidence for the behavior it changes.
 
-This guide covers the website workflow. The repository does not supply a public installer for the evolving 1.4 workspace application. Runtime setup and current application behavior need a separately verified source and handoff.
+This guide covers the website workflow. It doesn't include an installer for the Consulate 1.4 application, which isn't publicly available yet.
 
 ## Find the source for the change
 
