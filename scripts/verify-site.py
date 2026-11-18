@@ -80,6 +80,9 @@ def verify_discovery(root, site, pages, errors):
     origin = configuration["url"].rstrip("/") + configuration.get("baseurl", "").rstrip("/")
     expected = set()
     for name in pages:
+        if name == "404.html":
+            # GitHub Pages serves 404.html for missing paths; it is not a page to index.
+            continue
         route = "/" + name
         if route.endswith("/index.html"):
             route = route[:-len("index.html")]

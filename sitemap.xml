@@ -2,4 +2,4 @@
 layout: null
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{% for page in site.pages %}{% if page.layout %}<url><loc>{{ page.url | absolute_url | xml_escape }}</loc></url>{% endif %}{% endfor %}{% for guide in site.guides %}<url><loc>{{ guide.url | absolute_url | xml_escape }}</loc></url>{% endfor %}{% for post in site.posts %}<url><loc>{{ post.url | absolute_url | xml_escape }}</loc></url>{% endfor %}</urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{% for page in site.pages %}{% if page.layout and page.sitemap != false %}<url><loc>{{ page.url | absolute_url | xml_escape }}</loc></url>{% endif %}{% endfor %}{% for guide in site.guides %}<url><loc>{{ guide.url | absolute_url | xml_escape }}</loc></url>{% endfor %}{% for post in site.posts %}<url><loc>{{ post.url | absolute_url | xml_escape }}</loc></url>{% endfor %}</urlset>

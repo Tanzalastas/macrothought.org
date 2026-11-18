@@ -84,6 +84,13 @@ class GeneratedSiteTests(unittest.TestCase):
         self.assertTrue(any("missing generated page" in error for error in errors))
         self.assertTrue(any("URL is not a generated page" in error for error in errors))
 
+    def test_not_found_page_is_published_but_not_indexed(self):
+        self.write_json("public-files.json", {"files": ["index.html", "docs/index.html", "404.html", "assets/capture.jpg", "sitemap.xml", "feed.xml"]})
+        (self.site / "404.html").write_text(self.html.replace("<h1>Guide</h1>", "<h1>Not found</h1>"))
+        self.assertTrue(VERIFY.validate(self.root, self.site)["passed"])
+        (self.site / "sitemap.xml").write_text('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://example.test/</loc></url><url><loc>https://example.test/docs/</loc></url><url><loc>https://example.test/404.html</loc></url></urlset>')
+        self.assertIn("sitemap.xml: URL is not a generated page https://example.test/404.html", VERIFY.validate(self.root, self.site)["errors"])
+
 
 if __name__ == "__main__":
     unittest.main()

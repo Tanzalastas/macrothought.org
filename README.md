@@ -22,7 +22,7 @@ Open `http://127.0.0.1:8000/`. Each preview destination must be new; the builder
 - `_data/media.yml`: the exact historical assets selected for review, including source revisions, dates, hashes, descriptions, and publication status.
 - `_data/release.yml`: release-review state. `_data/flows.yml` holds the steps in the two illustrative motion sequences.
 
-Existing `app.html`, `setup.html`, and `skills.html` URLs remain available. The footer links directly to the Consulate documentation reference. New articles automatically enter the journal index and RSS feed; the homepage shows the latest three.
+Existing `app.html`, `setup.html`, and `skills.html` URLs remain available. `404.html` is the not-found page GitHub Pages serves for missing addresses; it is published but kept out of the sitemap. The footer links directly to the Consulate documentation reference. New articles automatically enter the journal index and RSS feed; the homepage shows the latest three.
 
 ## Public evidence boundary
 
