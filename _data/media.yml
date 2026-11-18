@@ -1,4 +1,4 @@
-# Archived captures selected for the local editorial review. Capture dates come
+# Archived captures approved with the editorial release on 2026-11-18. Dates come
 # from the source commits. Keep publication decisions separate from provenance.
 map-layouts:
   type: video
@@ -30,7 +30,7 @@ map-layouts:
   sha256: "7a9c9cdf2f849f30577e94ad3e98966f35fdbfeb0ca34e038171546882050adf"
   poster_sha256: "82d8306e37304864143281a7504f6ca58a40cfad287f921e83c2d77f189c80c0"
   review_status: reviewed-public-history
-  publication_status: pending-main-thread-review
+  publication_status: approved
 
 ring-map:
   type: image
@@ -45,7 +45,7 @@ ring-map:
   source_url: "https://github.com/Tanzalastas/macrothought.org/commit/09846b140106bb9b5f3fcdd10a91f93928e8712d"
   sha256: "82d8306e37304864143281a7504f6ca58a40cfad287f921e83c2d77f189c80c0"
   review_status: reviewed-public-history
-  publication_status: pending-main-thread-review
+  publication_status: approved
 
 force-map:
   type: image
@@ -60,7 +60,7 @@ force-map:
   source_url: "https://github.com/Tanzalastas/macrothought.org/commit/f38c7dcc13d82f28692f598b63db193f4cd2adb2"
   sha256: "912848488022a22c513f5a3862c323161e0a3d14bc449677449a789964df9ea8"
   review_status: reviewed-public-history
-  publication_status: pending-main-thread-review
+  publication_status: approved
 
 sphere-poster:
   type: image
@@ -75,7 +75,7 @@ sphere-poster:
   source_url: "https://github.com/Tanzalastas/macrothought.org/commit/e52eea2f4a70cad60cb0b72ef4fe19069607452c"
   sha256: "9fde194dde3e5b19414384d528b5dc50d4695725e1f51f2a1fe03f85a724d9ea"
   review_status: reviewed-public-history
-  publication_status: pending-main-thread-review
+  publication_status: approved
 
 sphere-rotation:
   type: video
@@ -102,4 +102,4 @@ sphere-rotation:
   sha256: "7c943eaa28feea93309930fca1c5ae3e37124bcd1fd56f70fd189b57eac735c5"
   poster_sha256: "9fde194dde3e5b19414384d528b5dc50d4695725e1f51f2a1fe03f85a724d9ea"
   review_status: reviewed-public-history
-  publication_status: pending-main-thread-review
+  publication_status: approved

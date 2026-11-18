@@ -1,5 +1,5 @@
 {
-  "description": "Exact generated static-site file allowlist. Historical media in this local candidate remain subject to main-thread publication review.",
+  "description": "Exact generated static-site file allowlist for the editorial release approved by the user on 2026-11-18. Historical media provenance and approval are recorded in _data/media.yml.",
   "files": [
     "CNAME",
     "LICENSE",

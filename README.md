@@ -1,6 +1,6 @@
 # Macrothought
 
-The public website and MIT-licensed skill pack for Macrothought. This editorial candidate adds a Consulate tour, seven practical guides, a dated project journal, and a status/roadmap page.
+The public website and MIT-licensed skill pack for Macrothought. This editorial release adds a Consulate tour, seven practical guides, a dated project journal, and a status/roadmap page.
 
 ## Build and preview
 
@@ -26,19 +26,19 @@ Existing `app.html`, `setup.html`, and `skills.html` URLs remain available. The 
 
 ## Public evidence boundary
 
-The current candidate uses reviewed historical project captures from July 2026. They do not establish current 1.4.x behavior. A verified current capture export and the requested five-minute showcase recording are not present in this cloud checkout. Track these as pending inputs rather than reconstructing product screens.
+The editorial release uses reviewed historical project captures from July 2026. They do not establish current 1.4.x behavior. A verified current capture export and the requested five-minute showcase recording are not present in this cloud checkout. Track these as pending inputs rather than reconstructing product screens.
 
 A short, frame-verified excerpt of the historical map recording ends before the later focus sequence exposes individual record titles. The untrimmed recording and unrelated legacy assets remain excluded from the generated website.
 
 New public content must come from explicitly approved project summaries, assets, status/devlog, and provenance. Do not import raw mailbox, Google Admin, personal documents, private URLs, credentials, or operational records. The historical application glossary informs a sanitized reading reference; the website does not mirror its private inventory or controls.
 
-The candidate is for local review. Publication remains pending the main coordinator's review. To check publication readiness without deploying:
+The user authorized deployment of reviewed candidate `e654d70de276176992fc7515cb66145886d0d2c1` on November 18, 2026, including the selected historical media. The release metadata records that approval. To check publication readiness without deploying:
 
 ```sh
 python3 scripts/verify-site.py /tmp/macrothought-review --publication
 ```
 
-This intentionally fails while the release or any included historical media remains unapproved. A passing preview check is not permission to publish. Keep the existing GitHub Pages main/root destination and CNAME unchanged. Push, merge, and deployment require the applicable authorization.
+This fails if the release or any included media is unapproved. Run this publication check for every release. A passing preview check alone is not permission to publish. Keep the existing GitHub Pages main/root destination and CNAME unchanged. Later publication requires the applicable authorization.
 
 ## Validation
 
