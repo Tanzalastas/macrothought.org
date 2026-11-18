@@ -1,0 +1,24 @@
+---
+layout: page
+title: Guides
+description: Practical guides to the public skills, workspace ideas, evidence, and website development.
+section: docs
+---
+<div class="prose">
+  <p>Start with a task you can check. These guides explain how to try the public skills, read the workspace examples, and keep evidence that another session can use.</p>
+  <p>For a first visit, begin with Getting started and Reading the workspace. For a contribution, read Requirements and evidence, then Website development.</p>
+</div>
+<ol class="guide-list">
+{% assign ordered_guides = site.guides | sort: 'order' %}
+{% for guide in ordered_guides %}
+  <li>
+    <h2><a href="{{ guide.url | relative_url }}">{{ guide.title | escape }}</a></h2>
+    <p>{{ guide.description | escape }}</p>
+  </li>
+{% endfor %}
+</ol>
+<div class="prose">
+  <h2>How to read the project</h2>
+  <p>Worked examples use invented data. Archive images identify their capture date. Each guide explains the evidence behind its scope and the checks that remain for a current application build.</p>
+  <p>The public website and skill pack are available in the <a href="https://github.com/Tanzalastas/macrothought.org">Macrothought repository</a>. The development guide covers this site's local build and review workflow.</p>
+</div>

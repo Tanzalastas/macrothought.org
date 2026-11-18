@@ -1,0 +1,5 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Macrothought journal</title><link>{{ '/devlog/' | absolute_url | xml_escape }}</link><description>{{ site.description | xml_escape }}</description><language>en</language><atom:link href="{{ '/feed.xml' | absolute_url | xml_escape }}" rel="self" type="application/rss+xml"/>{% for post in site.posts %}<item><title>{{ post.title | xml_escape }}</title><link>{{ post.url | absolute_url | xml_escape }}</link><guid isPermaLink="true">{{ post.url | absolute_url | xml_escape }}</guid><pubDate>{{ post.date | date_to_rfc822 }}</pubDate><description>{{ post.description | xml_escape }}</description></item>{% endfor %}</channel></rss>

@@ -51,3 +51,59 @@ if (search) search.addEventListener('input', () => {
   document.getElementById('skill-count').textContent = `${total} ${total === 1 ? 'skill' : 'skills'} in ${departments} ${departments === 1 ? 'department' : 'departments'}`;
   document.getElementById('no-results').hidden = total !== 0;
 });
+
+// Articles remain readable without JavaScript; their section navigation is an enhancement.
+document.querySelectorAll('[data-toc]').forEach(nav => {
+  const article = document.querySelector('.article-content');
+  if (!article) return;
+  const list = nav.querySelector('ol');
+  article.querySelectorAll('h2').forEach((heading, index) => {
+    if (!heading.id) heading.id = `section-${index + 1}`;
+    const item = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = `#${heading.id}`;
+    link.textContent = heading.textContent;
+    item.append(link); list.append(item);
+  });
+  nav.hidden = list.children.length === 0;
+});
+
+// These sequences explain methods. Playback is opt-in and never drives product state.
+const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+document.querySelectorAll('[data-motion]').forEach(study => {
+  const steps = [...study.querySelectorAll('[data-motion-step]')];
+  const stages = [...study.querySelectorAll('[data-stage]')];
+  const play = study.querySelector('[data-motion-play]');
+  const caption = study.querySelector('[data-motion-caption]');
+  let current = 0, timer = null;
+  const stop = () => {
+    window.clearInterval(timer); timer = null;
+    play.textContent = 'Play sequence';
+    play.setAttribute('aria-pressed', 'false');
+  };
+  const select = index => {
+    current = index;
+    steps.forEach((step, i) => step.setAttribute('aria-pressed', String(i === index)));
+    stages.forEach((stage, i) => stage.classList.toggle('is-active', i === index));
+    caption.textContent = steps[index].dataset.description;
+  };
+  steps.forEach((step, index) => { step.disabled = false; step.addEventListener('click', () => { stop(); select(index); }); });
+  play.addEventListener('click', () => {
+    if (timer !== null) { stop(); return; }
+    if (motionPreference.matches) return;
+    if (current === steps.length - 1) select(0);
+    play.textContent = 'Pause sequence'; play.setAttribute('aria-pressed', 'true');
+    timer = window.setInterval(() => {
+      select(current + 1);
+      if (current === steps.length - 1) stop();
+    }, 2400);
+  });
+  study.querySelector('[data-motion-reset]').addEventListener('click', () => { stop(); select(0); });
+  const applyPreference = () => {
+    stop(); play.disabled = motionPreference.matches;
+    study.querySelector('[data-motion-preference]').hidden = !motionPreference.matches;
+  };
+  motionPreference.addEventListener('change', applyPreference);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+  applyPreference();
+});

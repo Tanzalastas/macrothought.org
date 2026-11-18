@@ -1,40 +1,85 @@
 'use strict';
-const fs = require('node:fs'), path = require('node:path'), assert = require('node:assert/strict');
-const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const root = path.resolve(process.env.SITE_ROOT || path.join(__dirname, '..'));
-const out = path.resolve(process.env.REVIEW_OUTPUT || path.join(root, '..', 'review'));
-const axePath = process.env.AXE_PATH || require.resolve('axe-core/axe.min.js');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
+const { siteConfiguration, startSite, browserOptions, assertLayout } = require('./browser.cjs');
+
+function luminance(color) {
+  const components = color.match(/[\d.]+/g)?.map(Number);
+  assert(components && components.length >= 3 && (components.length === 3 || components[3] === 1), `Expected an opaque computed RGB color: ${color}`);
+  const linear = components.slice(0, 3).map(value => {
+    const channel = value / 255;
+    return channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
+  });
+  return linear[0] * 0.2126 + linear[1] * 0.7152 + linear[2] * 0.0722;
+}
+
 (async () => {
-  const browser = await chromium.launch({executablePath: process.env.CHROMIUM_PATH || undefined});
-  const report = {audits: [], contrast: [], reflow: []};
+  const config = siteConfiguration();
+  const axePath = process.env.AXE_PATH || require.resolve('axe-core/axe.min.js');
+  fs.mkdirSync(config.output, { recursive: true });
+  const site = await startSite(config.root);
+  let browser;
+  const report = { startedAt: new Date().toISOString(), source: config.root, audits: [], reflow: [], svgContrast: [] };
   try {
-    const page = await browser.newPage();
-    for (const width of [360, 1440]) {
-      await page.setViewportSize({width, height: 1000});
-      for (const filename of ['index.html', 'skills.html', 'app.html', 'setup.html']) {
-        await page.goto('file://' + path.join(root, filename));
-        await page.addScriptTag({path: axePath});
+    browser = await chromium.launch(browserOptions());
+    report.browser = await browser.version();
+    const page = await browser.newPage({ reducedMotion: 'reduce' });
+    for (const width of [360,1440]) {
+      await page.setViewportSize({ width, height: 1000 });
+      for (const route of config.routes) {
+        const response = await page.goto(site.base + route);
+        assert.equal(response.status(), 200, route);
+        await page.addScriptTag({ path: axePath });
         const audit = await page.evaluate(async () => {
-          const r = await axe.run(document, {runOnly: {type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa', 'best-practice']}});
-          return {version: axe.version, violations: r.violations, passes: r.passes.length, incomplete: r.incomplete.map(v => ({id: v.id, nodes: v.nodes.map(n => n.html)}))};
+          const result = await axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a','wcag2aa','wcag21aa','best-practice'] } });
+          return { version: axe.version, violations: result.violations, passes: result.passes.length,
+            incomplete: result.incomplete.map(item => ({ id: item.id, nodes: item.nodes.map(node => node.html) })) };
         });
-        report.audits.push({filename, width, ...audit});
-        assert.equal(audit.violations.length, 0, JSON.stringify(audit.violations));
+        report.audits.push({ route, width, ...audit });
+        // Axe cannot infer the painted circle behind SVG text. These particular
+        // labels have opaque fills, so calculate their contrast independently.
+        const labels = await page.locator('.flow-diagram [data-stage]').evaluateAll(stages => stages.map(stage => {
+          const text = stage.querySelector('text'), circle = stage.querySelector('.flow-node');
+          return { text: text.textContent, foreground: getComputedStyle(text).fill, background: getComputedStyle(circle).fill,
+            textOpacity: getComputedStyle(text).fillOpacity, backgroundOpacity: getComputedStyle(circle).fillOpacity,
+            groupOpacity: getComputedStyle(stage).opacity };
+        }));
+        for (const label of labels) {
+          assert.equal(label.textOpacity, '1'); assert.equal(label.backgroundOpacity, '1'); assert.equal(label.groupOpacity, '1');
+          const foreground = luminance(label.foreground), background = luminance(label.background);
+          const ratio = (Math.max(foreground, background) + 0.05) / (Math.min(foreground, background) + 0.05);
+          report.svgContrast.push({ route, width, ...label, ratio });
+          assert(ratio >= 4.5, `Diagram text contrast on ${route}: ${JSON.stringify(label)}, ratio ${ratio}`);
+        }
       }
     }
-    for (const width of [320, 720]) {
-      await page.setViewportSize({width, height: 1000});
-      await page.goto('file://' + path.join(root, 'index.html'));
-      if (width === 720) await page.addStyleTag({content: 'html{font-size:32px}'});
-      const size = await page.evaluate(() => ({viewport: innerWidth, scroll: document.documentElement.scrollWidth}));
-      assert(size.scroll <= width); report.reflow.push({width, doubleRootFont: width === 720, ...size});
+    for (const route of config.routes) {
+      for (const [width, doubleText] of [[320,false],[720,true]]) {
+        await page.setViewportSize({ width, height: 1000 });
+        await page.goto(site.base + route);
+        if (doubleText) await page.addStyleTag({ content: 'html{font-size:200%!important}' });
+        const geometry = await assertLayout(page, route, width);
+        report.reflow.push({ route, width, doubleText, ...geometry });
+      }
     }
-    // Independently calculate the opaque illustration labels' contrast.
-    function lum(hex) { const rgb = hex.match(/\w\w/g).map(s => parseInt(s, 16) / 255).map(v => v <= .04045 ? v / 12.92 : ((v + .055) / 1.055) ** 2.4); return rgb[0] * .2126 + rgb[1] * .7152 + rgb[2] * .0722; }
-    for (const [label, fg, bg] of [['Orbit labels','d7d8e2','161925'],['Center label','f6dfb1','161925'],['Figure caption','b4b6c5','10121e']]) {
-      const a = lum(fg), b = lum(bg), ratio = (Math.max(a,b)+.05)/(Math.min(a,b)+.05); assert(ratio >= 4.5); report.contrast.push({label,fg,bg,ratio:Math.round(ratio*100)/100});
-    }
-    fs.mkdirSync(out, {recursive: true}); fs.writeFileSync(path.join(out,'accessibility-final.json'),JSON.stringify(report,null,2));
-    console.log(JSON.stringify({audits:report.audits.length,violations:report.audits.flatMap(a=>a.violations).length,incomplete:report.audits.map(a=>({page:a.filename,width:a.width,checks:a.incomplete})),contrast:report.contrast,reflow:report.reflow},null,2));
-  } finally { await browser.close(); }
-})().catch(e=>{console.error(e);process.exitCode=1});
+    const violations = report.audits.flatMap(audit => audit.violations.map(item => ({ route: audit.route, width: audit.width, id: item.id, impact: item.impact })));
+    assert.deepEqual(violations, [], JSON.stringify(violations));
+    report.success = true;
+  } catch (error) {
+    report.success = false; report.failure = error.stack;
+    throw error;
+  } finally {
+    report.finishedAt = new Date().toISOString();
+    fs.writeFileSync(path.join(config.output, 'accessibility-results.json'), JSON.stringify(report, null, 2) + '\n');
+    if (browser) await browser.close();
+    await site.close();
+  }
+  console.log(JSON.stringify({ success: report.success, audits: report.audits.length,
+    svgContrast: report.svgContrast.length,
+    violations: report.audits.flatMap(audit => audit.violations).length,
+    incomplete: report.audits.filter(audit => audit.incomplete.length).map(audit => ({ route: audit.route, width: audit.width,
+      checks: audit.incomplete.map(item => ({ id: item.id, nodes: item.nodes.length })) })),
+    output: config.output }, null, 2));
+})().catch(error => { console.error(error); process.exitCode = 1; });

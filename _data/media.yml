@@ -1,0 +1,105 @@
+# Archived captures selected for the local editorial review. Capture dates come
+# from the source commits. Keep publication decisions separate from provenance.
+map-layouts:
+  type: video
+  src: /assets/media/map-layouts-archive.mp4
+  poster: /assets/showcase-poster.jpg
+  width: 1200
+  height: 750
+  poster_width: 1280
+  poster_height: 800
+  duration_seconds: 8.64
+  audio: false
+  title: "Switching map layouts"
+  alt: "In this silent excerpt the scattered points move into circles. The map controls and department legend remain beside them."
+  transcript: >-
+    Colored points fill a ring around a central emblem. The controls on the right show
+    Rings selected, with the department legend below. Circle becomes selected and
+    the points gather into two bands. Colors that were scattered across the view
+    now sit side by side along each curve. The points spread outward again. Near
+    the end, Tree becomes selected and the lines begin to rise into branching groups.
+    The excerpt ends during that transition. There is no speech or other audio.
+  caption: "July 19, 2026. The opening 8.64 seconds of the original screen recording show the map rearranging its points as the layout changes."
+  captured: "2026-07-19"
+  source_commit: "09846b140106bb9b5f3fcdd10a91f93928e8712d"
+  source_url: "https://github.com/Tanzalastas/macrothought.org/commit/09846b140106bb9b5f3fcdd10a91f93928e8712d"
+  source_sha256: "4540d65c557459baa7209a0b4aa76b6f11886c372fd4af7f7dfcc01b7e1889eb"
+  source_start_seconds: 0
+  source_end_seconds_exclusive: 8.64
+  excerpt_method: "First 216 consecutive H.264 frames copied from the source at 25 fps. Decoded frame hashes and timestamps match."
+  sha256: "7a9c9cdf2f849f30577e94ad3e98966f35fdbfeb0ca34e038171546882050adf"
+  poster_sha256: "82d8306e37304864143281a7504f6ca58a40cfad287f921e83c2d77f189c80c0"
+  review_status: reviewed-public-history
+  publication_status: pending-main-thread-review
+
+ring-map:
+  type: image
+  src: /assets/showcase-poster.jpg
+  width: 1280
+  height: 800
+  title: "The rings layout"
+  alt: "Colored nodes sit on concentric rings around a central mark. The Rings control is selected beside a department legend."
+  caption: "July 19, 2026. The poster from the original map recording shows the Rings view and its department legend."
+  captured: "2026-07-19"
+  source_commit: "09846b140106bb9b5f3fcdd10a91f93928e8712d"
+  source_url: "https://github.com/Tanzalastas/macrothought.org/commit/09846b140106bb9b5f3fcdd10a91f93928e8712d"
+  sha256: "82d8306e37304864143281a7504f6ca58a40cfad287f921e83c2d77f189c80c0"
+  review_status: reviewed-public-history
+  publication_status: pending-main-thread-review
+
+force-map:
+  type: image
+  src: /assets/galaxy-force.jpg
+  width: 1307
+  height: 924
+  title: "Departments in the force layout"
+  alt: "Groups of colored nodes radiate from department hubs. Short links are dense inside the clusters, with longer links stretching between them."
+  caption: "July 22, 2026. The force layout groups records by department. The legend and totals belong to this historical capture."
+  captured: "2026-07-22"
+  source_commit: "f38c7dcc13d82f28692f598b63db193f4cd2adb2"
+  source_url: "https://github.com/Tanzalastas/macrothought.org/commit/f38c7dcc13d82f28692f598b63db193f4cd2adb2"
+  sha256: "912848488022a22c513f5a3862c323161e0a3d14bc449677449a789964df9ea8"
+  review_status: reviewed-public-history
+  publication_status: pending-main-thread-review
+
+sphere-poster:
+  type: image
+  src: /assets/sphere-3d-poster.jpg
+  width: 1300
+  height: 918
+  title: "The sphere at rest"
+  alt: "A sphere of linked points surrounds the central mark. Larger department symbols sit around its edge."
+  caption: "July 22, 2026. A frame of the sphere capture shows its center and the ring of department symbols."
+  captured: "2026-07-22"
+  source_commit: "e52eea2f4a70cad60cb0b72ef4fe19069607452c"
+  source_url: "https://github.com/Tanzalastas/macrothought.org/commit/e52eea2f4a70cad60cb0b72ef4fe19069607452c"
+  sha256: "9fde194dde3e5b19414384d528b5dc50d4695725e1f51f2a1fe03f85a724d9ea"
+  review_status: reviewed-public-history
+  publication_status: pending-main-thread-review
+
+sphere-rotation:
+  type: video
+  src: /assets/sphere-3d.mp4
+  poster: /assets/sphere-3d-poster.jpg
+  width: 1300
+  height: 918
+  poster_width: 1300
+  poster_height: 918
+  duration_seconds: 8
+  audio: false
+  title: "One turn of the sphere"
+  alt: "A silent eight-second rotation of the spherical map. The colored clusters turn around a fixed center."
+  transcript: >-
+    A multicolored ring surrounds the central emblem, with small linked points
+    above and below it and larger hexagonal symbols near the edges. As the map
+    rotates, a cluster on one side crosses the center while points on the far
+    side come into view. The crossing paths separate again as the turn continues.
+    The center stays in place through the rotation. The clip is silent.
+  caption: "July 22, 2026. The map canvas turns through one rotation in eight seconds. Watch the department symbols pass in front of and behind the center."
+  captured: "2026-07-22"
+  source_commit: "e52eea2f4a70cad60cb0b72ef4fe19069607452c"
+  source_url: "https://github.com/Tanzalastas/macrothought.org/commit/e52eea2f4a70cad60cb0b72ef4fe19069607452c"
+  sha256: "7c943eaa28feea93309930fca1c5ae3e37124bcd1fd56f70fd189b57eac735c5"
+  poster_sha256: "9fde194dde3e5b19414384d528b5dc50d4695725e1f51f2a1fe03f85a724d9ea"
+  review_status: reviewed-public-history
+  publication_status: pending-main-thread-review

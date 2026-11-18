@@ -1,0 +1,28 @@
+context:
+  title: From a question to useful context
+  alt: "Five connected steps: question, sources, selection, context, return."
+  steps:
+    - name: Question
+      description: "Start with the decision or task. A smaller question makes relevant context easier to recognize."
+    - name: Sources
+      description: "Find the notes and references that bear on the question. Keep their origin and date attached."
+    - name: Selection
+      description: "Choose the useful passages. Include a missing source or disagreement as a visible gap."
+    - name: Context
+      description: "Give the next worker the task, constraints, and selected evidence together. A context pack supports work; it does not prove the result."
+    - name: Return
+      description: "Record the finding and its supporting source, so the next session can resume without treating a guess as settled knowledge."
+evidence:
+  title: Completion needs a trail
+  alt: "Five connected steps: requirement, change, check, review, decision."
+  steps:
+    - name: Requirement
+      description: "Write an observable outcome. Name what a passing result would demonstrate before making the change."
+    - name: Change
+      description: "Make a bounded change and keep its revision identifiable. An author's completion message is a claim to examine."
+    - name: Check
+      description: "Run a check that can fail. Preserve the command, inputs, result, and the limits of what it exercised."
+    - name: Review
+      description: "Have a separate reviewer compare the outcome with the requirement and inspect what the check could have missed."
+    - name: Decision
+      description: "Accept, repair, or leave the requirement unresolved. Local verification and public release remain separate decisions."

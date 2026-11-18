@@ -1,0 +1,4 @@
+- {title: Consulate, url: /consulate/, section: consulate}
+- {title: Documentation, url: /docs/, section: docs}
+- {title: Journal, url: /devlog/, section: devlog}
+- {title: Open skills, url: /skills.html, section: skills}

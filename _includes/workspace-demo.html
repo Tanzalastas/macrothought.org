@@ -1,0 +1,35 @@
+<div class="demo-shell dark"><div class="demo-top"><p><span>◈</span> FIELD ATLAS <span aria-hidden="true">/</span> Research department</p>
+<span class="demo-label">SYNTHETIC INTERACTION STUDY</span></div>
+<div class="demo-layout"><div class="demo-main"><div class="tabs js-only" role="tablist" aria-label="Workspace view"><button id="tab-map" type="button" role="tab" aria-selected="true" aria-controls="panel-map" data-view="map">Galaxy</button><button id="tab-files" type="button" role="tab" aria-selected="false" aria-controls="panel-files" tabindex="-1" data-view="files">Files</button><button id="tab-activity" type="button" role="tab" aria-selected="false" aria-controls="panel-activity" tabindex="-1" data-view="activity">Activity</button></div>
+<div class="view-panel view-map" id="panel-map" role="tabpanel" aria-labelledby="tab-map"><div class="map-buttons js-only"><button class="map-node" type="button" data-node="field-notes" aria-pressed="true">Field notes</button><button class="map-node" type="button" data-node="source-library" aria-pressed="false">Source library</button><button class="map-node" type="button" data-node="review-checklist" aria-pressed="false">Review checklist</button></div>
+</div>
+<div class="view-panel" id="panel-files" role="tabpanel" aria-labelledby="tab-files" hidden><ul class="file-tree"><li class="tree-root">Research / Field Atlas /</li>
+<li><button data-node="field-notes" type="button" aria-pressed="true"><span>↳ field-notes.md</span><small>NOTE</small></button></li>
+<li><button data-node="source-library" type="button" aria-pressed="false"><span>↳ source-library.md</span><small>SOURCES</small></button></li>
+<li><button data-node="review-checklist" type="button" aria-pressed="false"><span>↳ review-checklist.md</span><small>CHECKLIST</small></button></li>
+</ul>
+</div>
+<div class="view-panel" id="panel-activity" role="tabpanel" aria-labelledby="tab-activity" hidden><ol class="activity-list"><li><button data-node="review-checklist" type="button" aria-pressed="false"><span>Review requested<br><small>Reviewer · Review checklist</small></span><small>STEP 03</small></button></li>
+<li><button data-node="field-notes" type="button" aria-pressed="true"><span>Draft revised<br><small>Researcher · Field notes</small></span><small>STEP 02</small></button></li>
+<li><button data-node="source-library" type="button" aria-pressed="false"><span>Sources collected<br><small>Researcher · Source library</small></span><small>STEP 01</small></button></li>
+</ol>
+</div>
+<p class="lens-note js-only" id="lens-note">Select a document, then switch views. Its identity stays the same.</p>
+<noscript><p class="lens-note">The illustration shows three linked documents: Field notes, Source library, and Review checklist. With JavaScript, you can inspect each across three views.</p>
+</noscript>
+</div>
+<aside class="inspector" aria-label="Selected example document"><p class="eyebrow">Selected document</p>
+<div aria-live="polite" aria-atomic="true"><h3 id="object-title">Field notes</h3>
+<p id="object-description">A draft observation linked to its sources and the checklist used to review it.</p>
+<dl><div><dt>Identity across views</dt>
+<dd id="object-id">example:field-notes</dd>
+</div>
+<div><dt>Example status</dt>
+<dd id="object-status">Draft · review pending</dd>
+</div>
+</dl>
+</div>
+</aside>
+</div>
+</div>
+<p class="demo-footnote"><strong>Explore a direction, using invented data.</strong> This small example illustrates shared context; it is not a live workspace. The Sol representation in the separate workspace preview is synthetic and has no connected chat bridge.</p>

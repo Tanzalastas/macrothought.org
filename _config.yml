@@ -3,6 +3,20 @@
 url: "https://macrothought.org"
 baseurl: ""
 title: "Macrothought"
+description: "A field guide to knowledge, agent work, and the evidence behind it."
+timezone: UTC
+markdown: kramdown
+highlighter: rouge
+permalink: /devlog/:title/
+collections:
+  guides:
+    output: true
+    permalink: /docs/:name/
+defaults:
+  - scope: {path: "", type: guides}
+    values: {layout: guide, section: docs}
+  - scope: {path: "", type: posts}
+    values: {layout: post, section: devlog}
 exclude:
   - "README.md"
   - "public-files.json"
@@ -18,16 +32,12 @@ exclude:
   - "assets/brain-map-tree.jpg"
   - "assets/client-workspace.jpg"
   - "assets/file-map-wide.jpg"
-  - "assets/galaxy-force.jpg"
   - "assets/hero-sky.jpg"
   - "assets/hub-remote.jpg"
   - "assets/intro-last.jpg"
   - "assets/intro-poster.jpg"
   - "assets/intro.mp4"
   - "assets/machine-3d.jpg"
-  - "assets/showcase-poster.jpg"
   - "assets/showcase.mp4"
-  - "assets/sphere-3d-poster.jpg"
-  - "assets/sphere-3d.mp4"
   - "assets/stats-dashboard.jpg"
   - "assets/tree-3d-focus.jpg"
