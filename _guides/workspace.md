@@ -8,11 +8,11 @@ reviewed: 2026-11-18
 ---
 A map becomes useful when it helps you answer a question about your work. Start with the question, inspect the relevant source, and keep the finding with its evidence. The shape of a cluster can suggest where to look. The underlying note, file, or recorded event establishes what you can say about it.
 
-Macrothought explores several ways to see related material: spatial maps, directory views, and activity records. The public Field Atlas example uses invented projects to illustrate switching between Galaxy, Files, and Activity. Its content is a demonstration that you can inspect without connecting a personal workspace.
+Macrothought explores several ways to see related material: spatial maps, directory views, and activity records. The public Field Atlas example uses invented projects to illustrate switching between Galaxy, Files, and Activity. You can try it without connecting your own workspace.
 
 ## Understand the date of a capture
 
-The public recordings and images used in this tour span July 19–22, 2026. The force-map image below was captured on July 22. They show historical interfaces. Current application controls and fresh captures remain subject to verification. Use these images to understand the interaction ideas and the recorded stage of the project.
+The public recordings and images used in this tour span July 19–22, 2026. The force-map image below was captured on July 22. They show Consulate as it was then, and the current controls may differ. Use them to understand the ideas behind each view.
 
 The archived maps show FORCE, CIRCLE, TREE, and RINGS layout choices. They also show DEPARTMENTS and FOLDERS groupings. Recorded navigation instructions include scrolling to zoom, dragging to pan, and clicking a node to fly into a closer view. Each choice changes the way the material is presented in that archived interface.
 
